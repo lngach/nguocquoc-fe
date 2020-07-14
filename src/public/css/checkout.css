@@ -1,0 +1,212 @@
+#main {
+  height: 100%;
+  width: 100%;
+  min-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 30px;
+}
+
+.checkout-container {
+  width: 1200px;
+  background-color: #fff;
+  box-shadow: 0 0 20px 0 #457f4b;
+}
+
+.breadcrumbs {
+  background-color: #61b269;
+  color: #fff;
+  display: flex;
+  font-size: 14px;
+  position: relative;
+}
+
+.breadcrumb-item {
+  padding-left: 30px;
+}
+
+.breadcrumb-item:first-child {
+  padding-left: 10px;
+}
+
+.breadcrumb-item .number {
+  display: block;
+  background-color: #457f4b;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  float: left;
+  margin: 17px 0 0 10px;
+  text-align: center;
+  line-height: 23px;
+}
+
+.breadcrumb-item .labell {
+  display: block;
+  padding: 20px 0 20px 10px;
+  float: left;
+}
+
+.breadcrumb-item::after {
+  content: '';
+  display: block;
+  width: 38px;
+  height: 40px;
+  transform: rotate(130deg) skew(-10deg);
+  float: right;
+  position: relative;
+  top: 10px;
+  left: 19px;
+  border-top: 1px solid #457f4b;
+  border-left: 1px solid #457f4b;
+  background-color: #61b269;
+}
+
+.breadcrumb-item.current,
+.breadcrumb-item.current::after {
+  background-color: #457f4b;
+}
+
+.breadcrumb-item.current .number {
+  background-color: #61b269;
+}
+
+.product {
+  margin-left: 30px;
+  padding: 20px;
+  width: 400px;
+  float: left;
+}
+
+.product img {
+  width: 200px;
+  float: left;
+  margin-right: 20px;
+}
+
+.product h3 {
+  font-family: 'Roboto Condensed', san-serif;
+  margin: 15px 0 0;
+  text-decoration: underline;
+}
+
+.product p {
+  margin: 0;
+}
+
+.product .details {
+  margin-top: 20px;
+}
+
+.product .information {
+  line-height: 1em;
+  position: relative;
+  right: 3px;
+  margin-top: 20px;
+}
+
+.product .information td {
+  vertical-align: top;
+}
+
+.product .labell {
+  font-weight: bold;
+}
+
+.product .break {
+  padding-bottom: 20px;
+}
+
+form {
+  float: right;
+  background-color: #eee;
+  padding: 60px 80px 46px;
+}
+
+.cc-info {
+  display: flex;
+}
+
+.cc-info input,
+.cc-info label {
+  padding-left: 2px;
+}
+
+.input-group {
+  height: 50px;
+  margin: 0 0 20px;
+}
+
+.month {
+  width: 65px;
+  margin-right: 10px;
+}
+
+.year {
+  width: 65px;
+  margin-right: 90px;
+}
+
+.slash {
+  width: 15px;
+}
+
+.ccv {
+  width: 113px;
+}
+
+label,
+input {
+  display: block;
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+}
+
+label {
+  z-index: 1;
+  transition: opacity 0.2s ease-in-out;
+  color: #666;
+}
+
+input {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 2px solid #61b269;
+  position: relative;
+  top: -37px;
+  background-color: transparent;
+  transition: border-bottom 0.2s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  display: block;
+  background-color: #457f4b;
+  border: 0;
+  color: #ffffff;
+  font-size: 18px;
+  padding: 10px 20px;
+  transition: background-color 0.2s ease-in-out;
+  outline: none;
+  float: right;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #61b269;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.fadeIn {
+  opacity: 1;
+}

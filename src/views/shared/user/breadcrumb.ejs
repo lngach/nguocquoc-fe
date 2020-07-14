@@ -1,0 +1,26 @@
+<% if (typeof product !== 'undefined' && product != null) { %>
+<div class="banner-top">
+  <div class="container padding-1em">
+    <h3 class="banner-top-bread-h3" style="font-family: 'EB Garamond', serif;">
+      <%= product.name %>
+    </h3>
+    <h4 class="banner-top-bread-h4" style="font-family: 'EB Garamond', serif;">
+      <a href="/">Trang Chủ</a>
+      <label>/</label
+      ><a
+        href="/danh-muc/<%= product.categories.slug %>"
+        style="font-family: 'EB Garamond', serif;"
+        ><%= product.categories.name %></a
+      >
+      <label>/</label
+      ><a
+        style="font-family: 'EB Garamond', serif;"
+        href="/danh-muc/<%= product.categories.slug %>/<%= product.provider.slug %>"
+        ><%= product.provider.name %>%></a
+      >
+      <label>/</label><%= product.name %>%>
+    </h4>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<% }%>

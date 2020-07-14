@@ -1,0 +1,160 @@
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      xfbml: true,
+      version: 'v7.0',
+    })
+  }
+  ;(function (d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0]
+    if (d.getElementById(id)) return
+    js = d.createElement(s)
+    js.id = id
+    js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js'
+    fjs.parentNode.insertBefore(js, fjs)
+  })(document, 'script', 'facebook-jssdk')
+</script>
+
+<!-- Your Chat Plugin code -->
+<div
+  class="fb-customerchat"
+  attribution="setup_tool"
+  page_id="820134568189911"
+  theme_color="#ffc300"
+  logged_in_greeting="Xin chào. Chúng tôi giúp gì được cho bạn?"
+  logged_out_greeting="Xin chào. Chúng tôi giúp gì được cho bạn?"
+></div>
+
+<!-- ZALO -->
+<div
+  class="zalo-chat-widget"
+  data-oaid="134118603137951999"
+  data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+  data-autopopup="0"
+  data-width="350"
+  data-height="420"
+  id="zalo-chat"
+></div>
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>
+<!-- ZALO -->
+
+<!-- Phone Ring -->
+<a href="tel:+84981379777">
+  <i class="Phone is-animating"> </i>
+</a>
+<!-- Phone Ring -->
+<a href="/"
+  ><img
+    src="/images/logo.png"
+    class="img-head"
+    alt="Đức Khiêm Solar Vũng Tàu"
+    title="Đức Khiêm Solar Vũng Tàu"
+/></a>
+<header>
+  <div class="header" style="background-color: #e6f3f7;">
+    <div>
+      <div class="logo">
+        <h1>
+          <a href="/"
+            ><b>D<br />K<br />S</b>&nbsp;Đức Khiêm Solar Vũng Tàu<span
+              >Năng lượng mặt trời là nguồn tài nguyên vô tận</span
+            ></a
+          >
+        </h1>
+      </div>
+      <div class="head-t">
+        <ul class="card unset-card">
+          <li>
+            <a href="/gio-hang"
+              ><i class="fa fa-heart" aria-hidden="true"></i>Giỏ Hàng</a
+            >
+          </li>
+          <li>
+            <a href="/gioi-thieu"
+              ><i class="fa fa-file-text-o" aria-hidden="true"></i>Giới Thiệu</a
+            >
+          </li>
+          <li>
+            <a href="/lien-he"
+              ><i class="fa fa-ship" aria-hidden="true"></i>Liên Hệ</a
+            >
+          </li>
+        </ul>
+        <div class="search-form">
+          <form action="/tim-kiem/" method="get">
+            <input type="text" placeholder="Tìm kiếm..." name="tu-khoa" />
+            <input type="submit" value=" " />
+          </form>
+        </div>
+      </div>
+      <div class="nav-top">
+        <nav class="navbar navbar-default">
+          <div class="navbar-header nav_2">
+            <button
+              type="button"
+              class="navbar-toggle collapsed navbar-toggle1"
+              data-toggle="collapse"
+              data-target="#bs-megadropdown-tabs"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div
+            class="collapse navbar-collapse"
+            style="background-color: #e6f3f6;"
+            id="bs-megadropdown-tabs"
+          >
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="/" class="hyper"><span>Trang chủ</span></a>
+              </li>
+              <% if (runtimeCategories && runtimeCategories.length > 0) {%> <%
+              runtimeCategories.forEach(item => { %> <% if (item.id === 4 ||
+              item.id === 5 || item.id === 6) { %>
+              <li>
+                <a href="/danh-muc/<%= item.slug %>" class="hyper"
+                  ><span><%= item.name %></span></a
+                >
+              </li>
+              <% } else { %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle hyper" data-toggle="dropdown"
+                  ><span><%= item.name %><b class="caret"></b></span
+                ></a>
+                <ul class="dropdown-menu multi width-150">
+                  <div class="row">
+                    <ul class="multi-column-dropdown">
+                      <% if (item.providers && item.providers.length > 0) {%> <%
+                      item.providers.forEach(p => { %>
+                      <li>
+                        <a href="/danh-muc/<%= item.slug %>/<%= p.slug %>"
+                          ><i class="fa fa-angle-right" aria-hidden="true"></i
+                          ><%= p.name %></a
+                        >
+                      </li>
+                      <% })} %>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                </ul>
+              </li>
+              <% }})} %>
+            </ul>
+          </div>
+        </nav>
+        <!-- <div class="cart">
+          <span class="fa fa-shopping-cart my-cart-icon"
+            ><span class="badge badge-notify my-cart-badge"></span
+          ></span>
+        </div> -->
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</header>

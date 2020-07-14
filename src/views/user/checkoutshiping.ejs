@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../shared/user/styles.ejs %>
+    <link href="/css/checkout.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <% include ../shared/user/header.ejs %>
+    <!-- /HEADER -->
+
+    <!-- SECTION -->
+    <!-- <p>Hint: Design a credit card checkout form or page. Don't forget the important elements such as the numbers, dates, security numbers, etc. (It's up to you!) Don't forget to share on Dribbble and/or Twitter when you're done.</p> -->
+    <div id="main">
+      <div class="checkout-container">
+        <div class="breadcrumbs">
+          <div id="bread1" class="breadcrumb-item current">
+            <span class="number">1</span>
+            <span class="labell">Name & Address</span>
+          </div>
+          <div id="bread2" class="breadcrumb-item">
+            <span class="number">2</span>
+            <span class="labell">Shipping</span>
+          </div>
+          <div id="bread3" class="breadcrumb-item">
+            <span class="number">3</span>
+            <span class="labell">Payment</span>
+          </div>
+          <div id="bread4" class="breadcrumb-item">
+            <span class="number">4</span>
+            <span class="labell">Review Order</span>
+          </div>
+        </div>
+        <div id="tab1">a</div>
+        <div hidden id="tab2">b</div>
+        <div hidden id="tab3">
+          <div class="product">
+            <img
+              src="https://image.rakuten.co.jp/footmonkey/cabinet/newbalance/nb-wl555-sj-1.jpg"
+            />
+            <h3>555 New Balance</h3>
+            <p>$69.99</p>
+
+            <table class="information">
+              <tr>
+                <td class="labell">Style #:</td>
+                <td>WL696CCA</td>
+              </tr>
+              <tr>
+                <td class="label break">Color:</td>
+                <td>Grey & mint</td>
+              </tr>
+              <tr>
+                <td class="labell">Subtotal:</td>
+                <td>$69.99</td>
+              </tr>
+              <tr>
+                <td class="labell">Tax:</td>
+                <td>$5.60</td>
+              </tr>
+              <tr>
+                <td class="label break">Shipping:</td>
+                <td>$5.00</td>
+              </tr>
+              <tr>
+                <td class="labell">Total</td>
+                <td class="labell">$80.59</td>
+              </tr>
+            </table>
+          </div>
+          <form>
+            <div class="input-group">
+              <label for="cc-number">Credit Card Number</label>
+              <input type="text" name="cc-number" />
+            </div>
+
+            <div class="cc-info">
+              <div class="input-group month">
+                <label>Month</label>
+                <input type="number" name="exp-month" min="1" max="12" />
+              </div>
+
+              <label class="slash">/</label>
+
+              <div class="input-group year">
+                <label>Year</label>
+                <input type="number" name="exp-year" min="2016" max="2025" />
+              </div>
+
+              <div class="input-group ccv">
+                <label for="ccv">Security Code</label>
+                <input type="number" name="ccv" />
+              </div>
+            </div>
+            <button id="btnnext">Tiếp theo</button>
+
+            <button id="btnback">Quay lại</button>
+          </form>
+        </div>
+        <div hidden id="tab4">d</div>
+      </div>
+    </div>
+    <!-- /Section -->
+
+    <!-- FOOTER -->
+    <% include ../shared/user/footer.ejs %> <% include
+    ../shared/user/scripts.ejs %>
+
+    <!-- /FOOTER -->
+    <!-- jQuery Plugins -->
+    <!-- jQuery Plugins -->
+    <script>
+      var inputs = document.getElementsByTagName('input')
+
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('focus', function () {
+          this.previousSibling.previousSibling.classList.remove('fadeIn')
+          this.previousSibling.previousSibling.classList.add('fadeOut')
+        })
+
+        inputs[i].addEventListener('blur', function () {
+          if (!this.value.length) {
+            this.previousSibling.previousSibling.classList.remove('fadeOut')
+            this.previousSibling.previousSibling.classList.add('fadeIn')
+          }
+        })
+      }
+      $('#bread1, #bread2, #bread3, #bread4').on('click', function () {
+        $('.breadcrumb-item').each(function (index) {
+          if ($(this).hasClass('current')) {
+            $(this).removeClass('current')
+            $(`#tab${index + 1}`).prop('hidden', true)
+          }
+        })
+        const id = $(this).prop('id')[$(this).prop('id').length - 1]
+        $(`#tab${id}`).prop('hidden', false)
+        $(this).addClass('current')
+      })
+
+      $('#btnback').on('click', function (e) {
+        e.preventDefault()
+        const current = $('.current').text().trim().split(/\s+/)[0]
+        if (current == 1) return
+        $(`#bread${current - 1}`).trigger('click')
+      })
+      $('#btnnext').on('click', function (e) {
+        e.preventDefault()
+        const current = $('.current').text().trim().split(/\s+/)[0]
+        if (current == 4) return
+        $(`#bread${parseInt(current) + 1}`).trigger('click')
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,302 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../shared/user/styles.ejs %>
+  </head>
+  <body>
+    <% include ../shared/user/header.ejs %>
+    <div id="vide">
+      <div class="container">
+        <div class="banner-info">
+          <div class="dump-height"></div>
+        </div>
+      </div>
+    </div>
+
+    <!--content-->
+    <div class="product" style="background-color: #fbfeff;">
+      <div class="container">
+        <div class="spec">
+          <h3>Danh mục được quan tâm nhiều nhất</h3>
+          <div class="ser-t">
+            <b></b>
+            <span style="background-color: #fbfeff;"><i></i></span>
+            <b class="line"></b>
+          </div>
+		    </div>
+		<% categoryCollections.forEach(item => { %>
+			<div class="col-md-4 m-w3ls">
+				<div class="col-md1 fixed-height-320 card-category">
+				  <a href="/danh-muc/<%= item.slug %>">
+					  <img src="<%= item.dataValues.image %>" class="img-responsive img img-300" alt="<%= item.name %>" title="<%= item.name %>" />
+          </a>
+          <h3 class="most-cageogry-title"> <a href="/danh-muc/<%= item.slug %>" class="linkkk"> <%= item.name %></a></h3>
+				</div>
+			  </div>
+		<% }) %>
+      </div>
+    </div>
+    <!-- Carousel
+    ================================================== -->
+    <% if (sliders.length > 0){ %>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <% sliders.forEach((item, index) => { %>
+        <li data-target="#myCarousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
+        <% }) %>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <% sliders.forEach((item, index) => { %>
+        <div class="item <%= index === 0 ? 'active' : '' %>">
+          <a href="#">
+            <img class="first-slide height-500px" src="<%= item.url %>" alt="Đức Khiêm Solar Vũng Tàu" title="Đức Khiêm Solar Vũng Tàu"
+          /></a>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <% } %>
+    <!-- /.carousel -->
+
+    <!--content-->
+    <div class="product" style="background-color: #fcfcff;">
+      <div class="container">
+        <div class="spec">
+          <h3>Lắp Đặt Trọn Gói</h3>
+          <div class="ser-t">
+            <b></b>
+            <span style="background-color: #fcfcff;"><i></i></span>
+            <b class="line"></b>
+          </div>
+        </div>
+        <div class="con-w3l">
+		    <% generalProducts.forEach(item => { %>
+          <div class="col-md-3 pro-1">
+            <div class="col-m fixed-height">
+              <a
+                href="/<%= item.slug %>"
+                class="offer-img"
+              >
+                <img src="<%= item.image %>" class="img-responsive img-110" alt="<%= item.name %>" title="<%= item.name %>" />
+              </a>
+              <div class="mid-1">
+                <div class="women">
+                  <h6><a href="/<%= item.slug %>"><%= item.name %></a></h6>
+                </div>
+                <div class="pr-single">
+                  <p class="reduced">
+                    Giá: Liên Hệ
+                  </p>
+                </div>
+                <p><a href="/danh-muc/<%= item.categories.slug %>"><%= item.categories.name %></a></p>
+              </div>
+            </div>
+		  </div>
+		<% }) %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+	</div>
+	
+    <div class="product" style="background-color: #fbfeff;">
+      <div class="container">
+        <div class="spec">
+          <h3>Pin Mặt Trời</h3>
+          <div class="ser-t">
+            <b></b>
+            <span style="background-color: #fbfeff;"><i></i></span>
+            <b class="line"></b>
+          </div>
+        </div>
+        <div class="con-w3l">
+			<% solarPinProducts.forEach(item => { %>
+			  <div class="col-md-3 pro-1">
+				<div class="col-m fixed-height">
+				  <a
+					href="/<%= item.slug %>"
+					class="offer-img"
+				  >
+					<img src="<%= item.image %>" class="img-responsive img-110" alt="<%= item.name %>" title="<%= item.name %>" />
+				  </a>
+				  <div class="mid-1">
+					<div class="women">
+					  <h6><a href="/<%= item.slug %>"><%= item.name %></a></h6>
+					</div>
+					<div class="pr-single">
+            <p class="reduced">
+              Giá: Liên Hệ
+            </p>
+          </div>
+          <p>Thương Hiệu: <a href="/danh-muc/<%= item.categories.slug %>/<%= item.provider.slug %>"><%= item.provider.name %></a></p>
+          <p><a href="/danh-muc/<%= item.categories.slug %>"><%= item.categories.name %></a></p>
+				  </div>
+				</div>
+			  </div>
+			<% }) %>
+			  <div class="clearfix"></div>
+		</div>
+      </div>
+	</div>
+	
+    <div class="product" style="background-color: #fcfcff;">
+      <div class="container">
+        <div class="spec">
+          <h3>Inverter Hoà Lưới</h3>
+          <div class="ser-t">
+            <b></b>
+            <span style="background-color: #fcfcff;"><i></i></span>
+            <b class="line"></b>
+          </div>
+        </div>
+        <div class="con-w3l">
+			<% inverterProducts.forEach(item => { %>
+			  <div class="col-md-3 pro-1">
+				<div class="col-m fixed-height">
+				  <a
+					href="/<%= item.slug %>"
+					class="offer-img"
+				  >
+					<img src="<%= item.image %>" class="img-responsive img-110" alt="<%= item.name %>" title="<%= item.name %>" />
+				  </a>
+				  <div class="mid-1">
+					<div class="women">
+					  <h6><a href="/<%= item.slug %>"><%= item.name %></a></h6>
+					</div>
+					<div class="pr-single">
+            <p class="reduced">
+              Giá: Liên Hệ
+            </p>
+          </div>
+          <p>Thương Hiệu: <a href="/danh-muc/<%= item.categories.slug %>/<%= item.provider.slug %>"><%= item.provider.name %></a></p>
+          <p><a href="/danh-muc/<%= item.categories.slug %>"><%= item.categories.name %></a></p>
+        </div>
+				</div>
+			  </div>
+			<% }) %>
+			  <div class="clearfix"></div>
+		</div>
+      </div>
+    </div>
+
+	
+    <div class="product" style="background-color: #fbfeff;">
+      <div class="container">
+        <div class="spec">
+          <h3>Đèn Năng Lượng Mặt Trời</h3>
+          <div class="ser-t">
+            <b></b>
+            <span style="background-color: #fbfeff;"><i></i></span>
+            <b class="line"></b>
+          </div>
+        </div>
+        <div class="con-w3l">
+			<% solarLightProducts.forEach(item => { %>
+			  <div class="col-md-3 pro-1">
+				<div class="col-m fixed-height">
+				  <a
+					href="/<%= item.slug %>"
+					class="offer-img"
+				  >
+					<img src="<%= item.image %>" class="img-responsive img-110" alt="<%= item.name %>" title="<%= item.name %>" />
+				  </a>
+				  <div class="mid-1">
+					<div class="women">
+					  <h6><a href="/<%= item.slug %>"><%= item.name %></a></h6>
+					</div>
+					<div class="pr-single">
+            <p class="reduced">
+              Giá: Liên Hệ
+            </p>
+          </div>
+          <p>Thương Hiệu: <a href="/danh-muc/<%= item.categories.slug %>/<%= item.provider.slug %>"><%= item.provider.name %></a></p>
+          <p><a href="/danh-muc/<%= item.categories.slug %>"><%= item.categories.name %></a></p>
+        </div>
+				</div>
+			  </div>
+			<% }) %>
+			  <div class="clearfix"></div>
+		</div>
+      </div>
+    </div>
+
+
+    <div class="product" style="background-color: #fcfcff;">
+      <div class="container">
+        <div class="spec">
+          <h3>Những Công Trình Đã Thi Công</h3>
+          <div class="ser-t">
+            <b></b>
+            <span style="background-color: #fcfcff;"><i></i></span>
+            <b class="line"></b>
+          </div>
+        </div>
+        <div class="con-w3l autoplay">
+          <% completeConstructs.forEach(item => { %>
+            <div class="col-md-4 m-w3ls">
+              <div class="col-md1 fixed-height-320">
+                <a href="/<%= item.slug %>">
+                  <img src="<%= item.image %>" class="img-responsive img img-300" alt="<%= item.name %>" title="<%= item.name %>"/>
+                  <div class="big-sa">
+                    <h6><%= item.name %></h6>
+                    <p>
+                      <%- item.name%>...
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <% }) %>
+		</div>
+      </div>
+    </div>
+
+    
+    <div class="product" style="background-color: #fcfcff;">
+      <div class="container">
+        <div class="spec">
+          <h3>Tin Tức Mới</h3>
+          <div class="ser-t">
+            <b></b>
+            <span style="background-color: #fcfcff;"><i></i></span>
+            <b class="line"></b>
+          </div>
+        </div>
+        <div class="con-w3l autoplay">
+          <% news.forEach(item => { %>
+            <div class="col-md-4 m-w3ls">
+              <div class="col-md1 fixed-height-320">
+                <a href="/<%= item.slug %>">
+                  <img src="<%= item.image %>" class="img-responsive img img-300" alt="<%= item.name %>" title="<%= item.name %>"/>
+                  <div class="big-sa">
+                    <h6><%= item.name %></h6>
+                    <p>
+                      <%- item.name %>...
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <% }) %>
+		</div>
+      </div>
+    </div>
+
+    <!--footer-->
+    <% include ../shared/user/footer.ejs %>
+    <!-- //footer-->
+    <% include ../shared/user/scripts.ejs %>
+    <!-- smooth scrolling -->
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

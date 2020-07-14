@@ -1,0 +1,27 @@
+<% if (parseInt(totalItem/meta.per) > 1) { %>
+    <ul class="store-pagination">
+        <% if (meta.page > 1) { %>
+            <li><a href="http://localhost:4000/store">&laquo;</a></li>
+        <% } %>
+        <% var i = 1;
+        if (meta.page > 5) {
+            i = +meta.page - 4;
+        } %>
+        <% if (i !== 1) { %>
+            <li class="disabled"><a href="#">...</a></li>
+        <% } %>
+        <% for (i; i<=parseInt(totalItem/meta.per); i++) { %>
+            <% if (meta.page == i) { %>
+                <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
+            <% } else { %>
+                <li><a href="http://localhost:4000/store?page=<%= i %>"><%= i %></a></li>
+            <% } %>
+            <% if (i == (+meta.page + 4)) { %>
+                <li class="disabled"><a href="#">...</a></li>
+            <% break; } %>
+        <% } %>
+        <% if (meta.page != parseInt(totalItem/meta.per)) { %>
+            <li><a href="http://localhost:4000/store?page=<%= parseInt(totalItem/meta.per) %>">&raquo;</a></li>
+        <% } %>
+    </ul>
+<% } %>

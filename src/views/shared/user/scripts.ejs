@@ -1,0 +1,78 @@
+<script type="application/x-javascript">
+  addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+     function hideURLbar(){ window.scrollTo(0,1); }
+</script>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<!-- <script type="text/javascript" src="/js/move-top.js"></script> -->
+<script src="/js/bootstrap.js"></script>
+
+<!-- <script type="text/javascript" src="/js/move-top.js"></script> -->
+
+<script type="text/javascript" src="/js/easing.js"></script>
+
+<!--- start-rate---->
+<script src="/js/jstarbox.js"></script>
+
+<script src="/js/jquery.vide.min.js"></script>
+<script
+  type="text/javascript"
+  src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+></script>
+
+<script type="text/javascript">
+  jQuery(document).ready(function ($) {
+    $('.scroll').click(function (event) {
+      event.preventDefault()
+      $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000)
+    })
+  })
+
+  $('#vide').vide(
+    {
+      mp4:
+        'https://duckhiemsolarvungtau.s3-ap-southeast-1.amazonaws.com/video/video.mp4.mp4',
+      jpg:
+        'https://duckhiemsolarvungtau.s3-ap-southeast-1.amazonaws.com/video/video.jpg.jpg',
+      poster:
+        'https://duckhiemsolarvungtau.s3-ap-southeast-1.amazonaws.com/video/video.jpg.jpg',
+    },
+    {
+      posterType: 'jpg',
+      loop: true,
+      muted: true,
+    }
+  )
+
+  $('.autoplay').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 0,
+    infinite: true,
+    arrows: false,
+    centerMode: true,
+    cssEase: 'linear',
+    speed: 5000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: 'unslick',
+      },
+    ],
+  })
+</script>
+<% include ./showScript.ejs %>

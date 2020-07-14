@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../shared/user/styles.ejs %>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <% include ../shared/user/header.ejs %>
+    <!-- /HEADER -->
+    <% include ../shared/user/breadcrumb.ejs %>
+    <!-- /BREADCRUMB -->
+
+    <!-- SECTION -->
+
+    <!--banner-->
+    <div class="single">
+      <div class="container">
+        <div class="single-top-main">
+          <div class="col-md-5 single-top">
+            <div class="single-w3agile">
+              <div id="picture-frame">
+                <img
+                  src="<%= product.image %>"
+                  data-src="<%= product.image %>"
+                  alt="<%= product.name %>"
+                  title="<%= product.name %>"
+                  class="img-responsive"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7 single-top-left">
+            <div class="single-right">
+              <h1 style="color: #18bc9b; font-family: 'EB Garamond', serif;">
+                <%=product.name %>
+              </h1>
+              <% if (product.provider.id !== 15) { %>
+              <p>
+                <strong>Thương Hiệu: </strong>
+                <a
+                  href="/danh-muc/<%= product.categories.slug %>/<%= product.provider.slug %>"
+                  ><%= product.provider.name %></a
+                >
+              </p>
+              <% } %> <% if (product.categories.id !== 4 &&
+              product.categories.id !== 6) { %>
+              <div class="pr-single">
+                <p class="reduced">
+                  Giá: Liên Hệ
+                </p>
+              </div>
+              <% } else { %>
+              <div class="pr-single">
+                <p class="reduced">
+                  Đăng lúc: <%= product.createdAt.toLocaleString() %>
+                  <br />
+                  Lần cập nhật cuối cùng: <%= product.updatedAt.toLocaleString()
+                  %>
+                  <br />
+                  Danh mục: <%= product.categories.name %>
+                </p>
+              </div>
+              <% } %> <% if (product.content.split(" ").length <= 500) { %>
+              <p style="margin-top: 3em;">
+                <%- product.content %>
+              </p>
+              <% } %>
+              <ul class="social-top">
+                <li>
+                  <a href="#" class="icon facebook"
+                    ><i class="fa fa-facebook" aria-hidden="true"></i
+                    ><span></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" class="icon twitter"
+                    ><i class="fa fa-twitter" aria-hidden="true"></i
+                    ><span></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" class="icon pinterest"
+                    ><i class="fa fa-pinterest-p" aria-hidden="true"></i
+                    ><span></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" class="icon dribbble"
+                    ><i class="fa fa-dribbble" aria-hidden="true"></i
+                    ><span></span
+                  ></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <% if (product.content.split(" ").length > 500) { %>
+    <div class="container">
+      <p style="margin-top: 3em;">
+        <%- product.content %>
+      </p>
+    </div>
+    <% } %>
+    <!---->
+    <div class="content-top offer-w3agile">
+      <div class="container">
+        <div class="spec">
+          <% if(product.categories.id === 4) { %>
+          <h3>Công trình liên quan</h3>
+          <% } else if (product.categories.id === 6) { %>
+          <h3>Tin tức liên quan</h3>
+          <% } else { %>
+          <h3>Sản phẩm liên quan</h3>
+          <% } %>
+          <div class="ser-t">
+            <b></b>
+            <span><i></i></span>
+            <b class="line"></b>
+          </div>
+        </div>
+        <div class="con-w3l">
+          <% relatedProducts.forEach(item => { %>
+          <div class="col-md-3 pro-1">
+            <div class="col-m fixed-height">
+              <a href="/<%= item.slug %>" class="offer-img">
+                <img
+                  src="<%= item.image %> "
+                  class="img-responsive img-110"
+                  alt="<%= item.name %>"
+                  title="<% item.name %>"
+                />
+              </a>
+              <div class="mid-1">
+                <div class="women">
+                  <h6>
+                    <a href="/<%= item.slug %>">
+                      <% if (item.name.split(" ").length > 20) { %> <%=
+                      item.name.slice(0, 100) %> ... <% } else { %> <%=
+                      item.name %> <% } %>
+                    </a>
+                  </h6>
+                </div>
+                <% if (item.categories.id !== 4 && item.categories.id !== 6){ %>
+                <div class="pr-single">
+                  <p class="reduced">
+                    Giá: Liên Hệ
+                  </p>
+                </div>
+                <% if (item.provider.id !== 15) { %>
+                <p>
+                  Thương Hiệu:
+                  <a
+                    href="/danh-muc/<%= item.categories.slug %>/<%= item.provider.slug %>"
+                    ><%= item.provider.name %></a
+                  >
+                </p>
+                <% } %>
+                <p>
+                  <a href="/danh-muc/<%= item.categories.slug %>"
+                    ><%= item.categories.name %></a
+                  >
+                </p>
+                <% } else { %>
+                <div class="pr-single">
+                  <p class="reduced">
+                    Đăng lúc: <%= item.createdAt.toLocaleString() %>
+                    <br />
+                    Danh mục: <%= item.categories.name %>
+                  </p>
+                </div>
+                <% } %>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <!-- /Section -->
+
+    <!-- FOOTER -->
+    <% include ../shared/user/footer.ejs %>
+    <!-- /FOOTER -->
+    <!-- jQuery Plugins -->
+    <% include ../shared/user/scripts.ejs %>
+    <!-- jQuery Plugins -->
+  </body>
+</html>
