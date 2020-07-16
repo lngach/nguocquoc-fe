@@ -139,7 +139,7 @@ router.get('/', async (_, res) => {
     })
 
     res.render('user/index', {
-      title: 'Đức Khiêm Solar Vũng Tàu',
+      title: 'Ngọc Quốc Computer',
       generalProducts,
       solarPinProducts,
       inverterProducts,
@@ -151,7 +151,7 @@ router.get('/', async (_, res) => {
     })
   } catch (error) {
     res.render('user/index', {
-      title: 'Đức Khiêm Solar Vũng Tàu',
+      title: 'Ngọc Quốc Computer',
       generalProducts: [],
       solarPinProducts: [],
       inverterProducts: [],
