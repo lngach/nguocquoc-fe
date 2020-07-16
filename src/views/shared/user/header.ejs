@@ -118,8 +118,8 @@
                 <a href="#" class="dropdown-toggle hyper" data-toggle="dropdown"
                   ><span>Danh Mục<b class="caret"></b></span
                 ></a>
+                <% if (runtimeCategories && runtimeCategories.length > 0) {%>
                 <ul class="dropdown-menu multi with-auto-menu">
-                  <% if (runtimeCategories && runtimeCategories.length > 0) {%>
                   <% runtimeCategories.forEach(item => { %>
                   <li class="dropdown submenu">
                     <a
@@ -142,7 +142,7 @@
                     </ul>
                     <div class="clearfix"></div>
                   </li>
-                  <% }})} %>
+                  <% })} %>
                 </ul>
               </li>
             </ul>
