@@ -120,8 +120,7 @@
                 ></a>
                 <ul class="dropdown-menu multi with-auto-menu">
                   <% if (runtimeCategories && runtimeCategories.length > 0) {%>
-                  <% runtimeCategories.forEach(item => { %> <% if (item.id !== 4
-                  && item.id !== 5 && item.id !== 6) { %>
+                  <% runtimeCategories.forEach(item => { %>
                   <li class="dropdown submenu">
                     <a
                       href="#"
@@ -143,17 +142,9 @@
                     </ul>
                     <div class="clearfix"></div>
                   </li>
-                  <% }}) %>
+                  <% }})} %>
                 </ul>
               </li>
-              <% runtimeCategories.forEach(item => { %> <% if (item.id === 4 ||
-              item.id === 5 || item.id === 6) { %>
-              <li>
-                <a href="/danh-muc/<%= item.slug %>" class="hyper"
-                  ><span><%= item.name %></span></a
-                >
-              </li>
-              <% }})} %>
             </ul>
           </div>
         </nav>
