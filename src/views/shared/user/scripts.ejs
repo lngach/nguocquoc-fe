@@ -74,5 +74,20 @@
       },
     ],
   })
+
+  $('.submenu').hover(function () {
+    $('.submenu.open').each(function () {
+      $(this).removeClass('open')
+    })
+    $(this).toggleClass('open')
+  })
+  $('.submenu-item').hover(
+    function () {
+      $(this).addClass('active')
+    },
+    function () {
+      $(this).removeClass('active')
+    }
+  )
 </script>
 <% include ./showScript.ejs %>

@@ -377,7 +377,7 @@ nav.navbar.navbar-default {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   background-color: #fab005;
-  color: #fff;
+  color: #fff !important;
 }
 .nav > li > a {
   padding: 12px 20px !important;
@@ -3313,12 +3313,24 @@ span.last {
   height: 320px;
 }
 
+.dropdown-menu {
+  border: unset !important;
+  border: unset !important;
+  border-radius: 4px;
+  -webkit-box-shadow: unset !important;
+  box-shadow: unset !important;
+}
+
 .width-150 {
-  width: 150px !important;
   min-width: unset !important;
   padding: 0 30px !important;
-  top: 110%;
-  left: unset !important;
+  top: 0;
+  left: 110% !important;
+  border: unset !important;
+  border: unset !important;
+  border-radius: 4px;
+  -webkit-box-shadow: unset !important;
+  box-shadow: unset !important;
 }
 .height-500px {
   height: 500px !important;
@@ -3591,3 +3603,25 @@ span.last {
   right: 20px !important;
   z-index: 999999999 !important;
 }
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+  color: #1b242f;
+  text-align: left;
+  text-transform: uppercase;
+  height: 50px;
+  line-height: 45px;
+}
+
+.with-auto-menu {
+  min-width: unset !important;
+  padding: 10px 30px !important;
+  top: 110%;
+  left: unset !important;
+}
+
+/* .submenu .width-150 > .active > a,
+.submenu .width-150 > .active > a:hover,
+.submenu .width-150 > .active > a:focus {
+  background-color: #fab005;
+  color: #fff !important;
+} */

@@ -114,35 +114,44 @@
               <li>
                 <a href="/" class="hyper"><span>Trang chủ</span></a>
               </li>
-              <% if (runtimeCategories && runtimeCategories.length > 0) {%> <%
-              runtimeCategories.forEach(item => { %> <% if (item.id === 4 ||
-              item.id === 5 || item.id === 6) { %>
-              <li>
-                <a href="/danh-muc/<%= item.slug %>" class="hyper"
-                  ><span><%= item.name %></span></a
-                >
-              </li>
-              <% } else { %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle hyper" data-toggle="dropdown"
-                  ><span><%= item.name %><b class="caret"></b></span
+                  ><span>Danh Mục<b class="caret"></b></span
                 ></a>
-                <ul class="dropdown-menu multi width-150">
-                  <div class="row">
-                    <ul class="multi-column-dropdown">
+                <ul class="dropdown-menu multi with-auto-menu">
+                  <% if (runtimeCategories && runtimeCategories.length > 0) {%>
+                  <% runtimeCategories.forEach(item => { %> <% if (item.id !== 4
+                  && item.id !== 5 && item.id !== 6) { %>
+                  <li class="dropdown submenu">
+                    <a
+                      href="#"
+                      class="dropdown-toggle hyper"
+                      data-toggle="dropdown"
+                      ><span><%= item.name %><b class="caret"></b></span
+                    ></a>
+                    <ul class="dropdown-menu multi width-150">
                       <% if (item.providers && item.providers.length > 0) {%> <%
                       item.providers.forEach(p => { %>
-                      <li>
-                        <a href="/danh-muc/<%= item.slug %>/<%= p.slug %>"
-                          ><i class="fa fa-angle-right" aria-hidden="true"></i
-                          ><%= p.name %></a
+                      <li class="dropdown submenu">
+                        <a
+                          href="/danh-muc/<%= item.slug %>/<%= p.slug %>"
+                          class="hyper"
+                          ><span><%= p.name %></span></a
                         >
                       </li>
                       <% })} %>
                     </ul>
                     <div class="clearfix"></div>
-                  </div>
+                  </li>
+                  <% }}) %>
                 </ul>
+              </li>
+              <% runtimeCategories.forEach(item => { %> <% if (item.id === 4 ||
+              item.id === 5 || item.id === 6) { %>
+              <li>
+                <a href="/danh-muc/<%= item.slug %>" class="hyper"
+                  ><span><%= item.name %></span></a
+                >
               </li>
               <% }})} %>
             </ul>
