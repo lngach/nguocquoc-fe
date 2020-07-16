@@ -1,8 +1,7 @@
-const HOST =
-  'duckhiemsolarvungtau.c2x3b5g2rc61.ap-southeast-1.rds.amazonaws.com'
-const USER = 'duckhiem'
-const PASSWORD = 'duckhiem'
-const DATABASE = 'duckhiemsolarvungtau'
+const HOST = 'snmtechnology.ccdwok0hcezk.ap-southeast-1.rds.amazonaws.com'
+const USER = 'snm'
+const PASSWORD = "Fuckin'damn113"
+const DATABASE = 'snmtechnology'
 const ADAPTER = 'mysql'
 
 module.exports = {
