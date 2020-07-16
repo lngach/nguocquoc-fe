@@ -72,19 +72,19 @@
                 <div class="women">
                   <h6>
                     <a href="/<%= item.slug %>">
-                      <% if (item.name.split(" ").length > 20) { %> <%=
+                      <% if (item.name.split(" ").length > 15) { %> <%=
                       item.name.slice(0, 100) %> ... <% } else { %> <%=
                       item.name %> <% } %>
                     </a>
                   </h6>
                 </div>
-                <% if (item.categories.id !== 4 && item.categories.id !== 6){ %>
+                <% if (item.categories.id !== 100){ %>
                 <div class="pr-single">
                   <p class="reduced">
                     Giá: Liên Hệ
                   </p>
                 </div>
-                <% if (item.provider.id !== 15) { %>
+                <% if (item.provider.id !== 100) { %>
                 <p>
                   Thương Hiệu:
                   <a

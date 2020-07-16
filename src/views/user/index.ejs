@@ -42,34 +42,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<% }) %>
       </div>
     </div>
-    <!-- Carousel
-    ================================================== -->
-    <% if (sliders.length > 0){ %>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <% sliders.forEach((item, index) => { %>
-        <li data-target="#myCarousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
-        <% }) %>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <% sliders.forEach((item, index) => { %>
-        <div class="item <%= index === 0 ? 'active' : '' %>">
-          <a href="#">
-            <img class="first-slide height-500px" src="<%= item.url %>" alt="Đức Khiêm Solar Vũng Tàu" title="Đức Khiêm Solar Vũng Tàu"
-          /></a>
-        </div>
-        <% }) %>
-      </div>
-    </div>
-    <% } %>
-    <!-- /.carousel -->
-
+    
     <!--content-->
     <div class="product" style="background-color: #fcfcff;">
       <div class="container">
         <div class="spec">
-          <h3>Lắp Đặt Trọn Gói</h3>
+          <h3>Sản Phẩm Mới</h3>
           <div class="ser-t">
             <b></b>
             <span style="background-color: #fcfcff;"><i></i></span>
@@ -77,7 +55,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           </div>
         </div>
         <div class="con-w3l">
-		    <% generalProducts.forEach(item => { %>
+		    <% newProducts.forEach(item => { %>
           <div class="col-md-3 pro-1">
             <div class="col-m fixed-height">
               <a
@@ -108,7 +86,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="product" style="background-color: #fbfeff;">
       <div class="container">
         <div class="spec">
-          <h3>Pin Mặt Trời</h3>
+          <h3>Sản Phẩm Bán Chạy Nhất</h3>
           <div class="ser-t">
             <b></b>
             <span style="background-color: #fbfeff;"><i></i></span>
@@ -116,7 +94,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           </div>
         </div>
         <div class="con-w3l">
-			<% solarPinProducts.forEach(item => { %>
+			<% topSellProducts.forEach(item => { %>
 			  <div class="col-md-3 pro-1">
 				<div class="col-m fixed-height">
 				  <a
@@ -148,7 +126,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="product" style="background-color: #fcfcff;">
       <div class="container">
         <div class="spec">
-          <h3>Inverter Hoà Lưới</h3>
+          <h3>Sản Phẩm Được Quan Tâm Nhiều Nhất</h3>
           <div class="ser-t">
             <b></b>
             <span style="background-color: #fcfcff;"><i></i></span>
@@ -156,7 +134,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           </div>
         </div>
         <div class="con-w3l">
-			<% inverterProducts.forEach(item => { %>
+			<% topViewProducts.forEach(item => { %>
 			  <div class="col-md-3 pro-1">
 				<div class="col-m fixed-height">
 				  <a
@@ -185,79 +163,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       </div>
     </div>
 
-	
-    <div class="product" style="background-color: #fbfeff;">
-      <div class="container">
-        <div class="spec">
-          <h3>Đèn Năng Lượng Mặt Trời</h3>
-          <div class="ser-t">
-            <b></b>
-            <span style="background-color: #fbfeff;"><i></i></span>
-            <b class="line"></b>
-          </div>
-        </div>
-        <div class="con-w3l">
-			<% solarLightProducts.forEach(item => { %>
-			  <div class="col-md-3 pro-1">
-				<div class="col-m fixed-height">
-				  <a
-					href="/<%= item.slug %>"
-					class="offer-img"
-				  >
-					<img src="<%= item.image %>" class="img-responsive img-110" alt="<%= item.name %>" title="<%= item.name %>" />
-				  </a>
-				  <div class="mid-1">
-					<div class="women">
-					  <h6><a href="/<%= item.slug %>"><%= item.name %></a></h6>
-					</div>
-					<div class="pr-single">
-            <p class="reduced">
-              Giá: Liên Hệ
-            </p>
-          </div>
-          <p>Thương Hiệu: <a href="/danh-muc/<%= item.categories.slug %>/<%= item.provider.slug %>"><%= item.provider.name %></a></p>
-          <p><a href="/danh-muc/<%= item.categories.slug %>"><%= item.categories.name %></a></p>
-        </div>
-				</div>
-			  </div>
-			<% }) %>
-			  <div class="clearfix"></div>
-		</div>
-      </div>
-    </div>
-
-
-    <div class="product" style="background-color: #fcfcff;">
-      <div class="container">
-        <div class="spec">
-          <h3>Những Công Trình Đã Thi Công</h3>
-          <div class="ser-t">
-            <b></b>
-            <span style="background-color: #fcfcff;"><i></i></span>
-            <b class="line"></b>
-          </div>
-        </div>
-        <div class="con-w3l autoplay">
-          <% completeConstructs.forEach(item => { %>
-            <div class="col-md-4 m-w3ls">
-              <div class="col-md1 fixed-height-320">
-                <a href="/<%= item.slug %>">
-                  <img src="<%= item.image %>" class="img-responsive img img-300" alt="<%= item.name %>" title="<%= item.name %>"/>
-                  <div class="big-sa">
-                    <h6><%= item.name %></h6>
-                    <p>
-                      <%- item.name%>...
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <% }) %>
-		</div>
-      </div>
-    </div>
-
-    
     <div class="product" style="background-color: #fcfcff;">
       <div class="container">
         <div class="spec">

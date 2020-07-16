@@ -23,56 +23,58 @@
         </h2>
       </div>
       <%} else { products.forEach(item => { %>
-          <div class="col-md-3 pro-1">
-            <div class="col-m fixed-height">
-              <a href="/<%= item.slug %>" class="offer-img">
-                <img
-                  src="<%= item.image %> "
-                  class="img-responsive img-110"
-                  alt="<%= item.name %>"
-                  title="<% item.name %>"
-                />
-              </a>
-              <div class="mid-1">
-                <div class="women">
-                  <h6>
-                    <a href="/<%= item.slug %>">
-                      <% if (item.name.split(" ").length > 20) { %>
-                        <%= item.name.slice(0, 100) %> ...
-                      <% } else { %>
-                        <%= item.name %>
-                      <% } %>
-                    </a>
-                  </h6>
-                </div>
-                <% if (item.categories.id !== 4 && item.categories.id !== 6){ %>
-                  <div class="pr-single">
-                    <p class="reduced">
-                      Giá: Liên Hệ
-                    </p>
-                  </div>
-                  <% if (item.provider.id !== 15) { %>
-                    <p>
-                      Thương Hiệu:
-                      <a
-                        href="/danh-muc/<%= item.categories.slug %>/<%= item.provider.slug %>"
-                        ><%= item.provider.name %></a
-                      >
-                    </p>
-                  <% } %>
-                  <p><a href="/danh-muc/<%= item.categories.slug %>"><%= item.categories.name %></a></p>
-                <% } else { %>
-                  <div class="pr-single">
-                    <p class="reduced">
-                      Đăng lúc: <%= item.createdAt.toLocaleString() %>
-                      <br />
-                      Danh mục: <%= item.categories.name %>
-                    </p>
-                  </div>
-                <% } %>
+        <div class="col-md-3 pro-1">
+          <div class="col-m fixed-height">
+            <a href="/<%= item.slug %>" class="offer-img">
+              <img
+                src="<%= item.image %> "
+                class="img-responsive img-110"
+                alt="<%= item.name %>"
+                title="<% item.name %>"
+              />
+            </a>
+            <div class="mid-1">
+              <div class="women">
+                <h6>
+                  <a href="/<%= item.slug %>">
+                    <% if (item.name.split(" ").length > 15) { %> <%=
+                    item.name.slice(0, 100) %> ... <% } else { %> <%=
+                    item.name %> <% } %>
+                  </a>
+                </h6>
               </div>
+              <% if (item.categories.id !== 100){ %>
+              <div class="pr-single">
+                <p class="reduced">
+                  Giá: Liên Hệ
+                </p>
+              </div>
+              <% if (item.provider.id !== 100) { %>
+              <p>
+                Thương Hiệu:
+                <a
+                  href="/danh-muc/<%= item.categories.slug %>/<%= item.provider.slug %>"
+                  ><%= item.provider.name %></a
+                >
+              </p>
+              <% } %>
+              <p>
+                <a href="/danh-muc/<%= item.categories.slug %>"
+                  ><%= item.categories.name %></a
+                >
+              </p>
+              <% } else { %>
+              <div class="pr-single">
+                <p class="reduced">
+                  Đăng lúc: <%= item.createdAt.toLocaleString() %>
+                  <br />
+                  Danh mục: <%= item.categories.name %>
+                </p>
+              </div>
+              <% } %>
             </div>
           </div>
+        </div>
       <%})}%>
       <div class="clearfix"></div>
     </div>

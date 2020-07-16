@@ -31,29 +31,29 @@ router.get('/', async (_, res) => {
           'image',
         ],
       ],
-      where: { id: { $not: 4 }, isActive: true },
+      where: { isActive: true },
       order: [[sequelize.literal('totalView'), 'DESC']],
       limit: 3,
     })
 
     // 8 san pham moi nhat
-    let generalProducts = await Product.findAll({
+    let newProducts = await Product.findAll({
       limit: 8,
-      order: [['updatedAt', 'DESC']],
+      order: [['updated_at', 'DESC']],
       include: [
         Provider,
         {
           model: Category,
           as: 'categories',
-          where: { id: 5, isActive: true },
+          where: { isActive: true },
         },
         ProductType,
       ],
       where: { isActive: true },
     })
 
-    // 6 san pham dc ban chay nhat
-    let solarPinProducts = await Product.findAll({
+    // 8 san pham dc ban chay nhat
+    let topSellProducts = await Product.findAll({
       limit: 8,
       order: [['sales', 'DESC']],
       where: { isActive: true },
@@ -62,14 +62,14 @@ router.get('/', async (_, res) => {
         {
           model: Category,
           as: 'categories',
-          where: { id: 2, isActive: true },
+          where: { isActive: true },
         },
         ProductType,
       ],
     })
 
-    // 6 san pham duoc quan tam nhieu nhat
-    let inverterProducts = await Product.findAll({
+    // 8 san pham duoc quan tam nhieu nhat
+    let topViewProducts = await Product.findAll({
       limit: 8,
       order: [['views', 'DESC']],
       where: { isActive: true },
@@ -78,88 +78,68 @@ router.get('/', async (_, res) => {
         {
           model: Category,
           as: 'categories',
-          where: { id: 1, isActive: true },
+          where: { isActive: true },
         },
         ProductType,
       ],
     })
 
-    // 6 san pham duoc quan tam nhieu nhat
-    let solarLightProducts = await Product.findAll({
-      limit: 8,
-      order: [['views', 'DESC']],
-      where: { isActive: true },
-      include: [
-        Provider,
-        {
-          model: Category,
-          as: 'categories',
-          where: { id: 3, isActive: true },
-        },
-        ProductType,
-      ],
-    })
+    // // 6 Tin Tưc Mới Nhất
+    // let completeConstructs = await Product.findAll({
+    //   limit: 8,
+    //   order: [['updated_at', 'DESC']],
+    //   where: { isActive: true },
+    //   include: [
+    //     Provider,
+    //     {
+    //       model: Category,
+    //       as: 'categories',
+    //       where: { id: 4, isActive: true },
+    //     },
+    //     ProductType,
+    //   ],
+    // })
 
-    // 6 Tin Tưc Mới Nhất
-    let completeConstructs = await Product.findAll({
-      limit: 8,
-      order: [['updated_at', 'DESC']],
-      where: { isActive: true },
-      include: [
-        Provider,
-        {
-          model: Category,
-          as: 'categories',
-          where: { id: 4, isActive: true },
-        },
-        ProductType,
-      ],
-    })
+    // // 6 Tin Tưc Mới Nhất
+    // let news = await Product.findAll({
+    //   limit: 8,
+    //   order: [['updated_at', 'DESC']],
+    //   where: { isActive: true },
+    //   include: [
+    //     Provider,
+    //     {
+    //       model: Category,
+    //       as: 'categories',
+    //       where: { id: 6, isActive: true },
+    //     },
+    //     ProductType,
+    //   ],
+    // })
 
-    // 6 Tin Tưc Mới Nhất
-    let news = await Product.findAll({
-      limit: 8,
-      order: [['updated_at', 'DESC']],
-      where: { isActive: true },
-      include: [
-        Provider,
-        {
-          model: Category,
-          as: 'categories',
-          where: { id: 6, isActive: true },
-        },
-        ProductType,
-      ],
-    })
-
-    let sliders = await Slider.findAll({
-      where: {
-        isActive: true,
-      },
-    })
+    // let sliders = await Slider.findAll({
+    //   where: {
+    //     isActive: true,
+    //   },
+    // })
 
     res.render('user/index', {
       title: 'Ngọc Quốc Computer',
-      generalProducts,
-      solarPinProducts,
-      inverterProducts,
+      newProducts,
+      topSellProducts,
+      topViewProducts,
       categoryCollections,
-      solarLightProducts,
-      completeConstructs,
-      news,
-      sliders,
+      newProducts,
+      news: [],
     })
   } catch (error) {
     res.render('user/index', {
       title: 'Ngọc Quốc Computer',
-      generalProducts: [],
-      solarPinProducts: [],
-      inverterProducts: [],
+      newProducts: [],
+      topSellProducts: [],
       categoryCollections: [],
-      completeConstructs: [],
-      solarLightProducts: [],
+      topViewProducts: [],
+      newProducts: [],
       news: [],
-      sliders: [],
     })
   }
 })
@@ -207,7 +187,7 @@ router.get('/danh-muc/:slug', async (req, res) => {
           'image',
         ],
       ],
-      where: { id: { $notIn: [4, 6] }, isActive: true },
+      where: { isActive: true },
       order: [[sequelize.literal('totalView'), 'DESC']],
       limit: 3,
     })
@@ -279,12 +259,10 @@ router.get('/danh-muc/:slug/:slug2', async (req, res) => {
           'image',
         ],
       ],
-      where: { id: { $notIn: [4, 6] }, isActive: true },
+      where: { isActive: true },
       order: [[sequelize.literal('totalView'), 'DESC']],
       limit: 3,
     })
-
-    let main = null
 
     const provider = await Provider.findOne({
       where: {
@@ -292,17 +270,6 @@ router.get('/danh-muc/:slug/:slug2', async (req, res) => {
         isActive: true,
       },
     })
-
-    main = provider
-
-    if (provider.id === 15) {
-      main = await Category.findOne({
-        where: {
-          slug: req.params.slug,
-          isActive: true,
-        },
-      })
-    }
 
     const products = await Product.findAll({
       // where: { '$categories.slug$': req.params.slug },
@@ -336,8 +303,8 @@ router.get('/danh-muc/:slug/:slug2', async (req, res) => {
     })
     let view = 'user/provider'
     res.render(view, {
-      title: main.name,
-      main: main,
+      title: provider.name,
+      main: provider,
       products,
       categoryCollections,
     })
