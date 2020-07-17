@@ -129,14 +129,26 @@
                       ><span><%= item.name %><b class="caret"></b></span
                     ></a>
                     <ul class="dropdown-menu multi width-150">
-                      <% if (item.providers && item.providers.length > 0) {%> <%
-                      item.providers.forEach(p => { %>
+                      <% if (item.categories && item.categories.length > 0) {%>
+                      <% item.categories.forEach(c => { %>
                       <li class="dropdown submenu">
                         <a
-                          href="/danh-muc/<%= item.slug %>/<%= p.slug %>"
+                          href="/danh-muc/<%= item.slug %>/<%= c.slug %>"
                           class="hyper"
-                          ><span><%= p.name %></span></a
-                        >
+                          ><span><%= c.name %><b class="caret"></b></span
+                        ></a>
+                        <ul class="dropdown-menu multi width-150">
+                          <% if (c.providers && c.providers.length > 0) {%> <%
+                          c.providers.forEach(p => { %>
+                          <li class="dropdown submenu">
+                            <a
+                              href="/danh-muc/<%= item.slug %>/<%= p.slug %>"
+                              class="hyper"
+                              ><span><%= p.name %></span></a
+                            >
+                          </li>
+                          <% })} %>
+                        </ul>
                       </li>
                       <% })} %>
                     </ul>

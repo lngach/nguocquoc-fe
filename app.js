@@ -21,10 +21,49 @@ app.use(express.static('src/public'))
 
 app.use(async (_, res, next) => {
   let categories = await sequelize.query(
-    `SELECT GROUP_CONCAT(DISTINCT pd.name SEPARATOR ',') as providerNames, GROUP_CONCAT(DISTINCT pd.slug SEPARATOR ',') as providerSlugs, c.id, c.name, c.slug  FROM products p, categories c, providers pd WHERE p.category_id = c.id AND p.provider_id = pd.id GROUP BY c.name, c.slug ORDER BY c.id ASC`,
+    `SELECT
+        GROUP_CONCAT(DISTINCT c.name SEPARATOR ',') as categoryNames,
+        GROUP_CONCAT(DISTINCT c.slug SEPARATOR ',') as categorySlugs,
+        pt.id, pt.name, pt.slug
+      FROM
+        products p, categories c, product_types pt
+      WHERE
+        p.category_id = c.id
+        AND p.product_type_id = pt.id
+      GROUP BY pt.name, pt.slug
+      ORDER BY pt.id ASC`,
+    { type: QueryTypes.SELECT }
+  )
+  let providers = await sequelize.query(
+    `SELECT
+        GROUP_CONCAT(DISTINCT pd.name SEPARATOR ',') as providerNames,
+        GROUP_CONCAT(DISTINCT pd.slug SEPARATOR ',') as providerSlugs,
+        c.id, c.name, c.slug
+      FROM
+        products p, categories c, providers pd
+      WHERE
+        p.category_id = c.id
+        AND p.provider_id = pd.id
+      GROUP BY c.name, c.slug
+      ORDER BY c.id ASC`,
     { type: QueryTypes.SELECT }
   )
   categories = categories.map((item) => {
+    let newItem = { ...item }
+    newItem.categoryNames = newItem.categoryNames.split(',')
+    newItem.categorySlugs = newItem.categorySlugs.split(',')
+    newItem.categories = []
+    newItem.categoryNames.forEach((_, index) => {
+      newItem.categories.push({
+        name: newItem.categoryNames[index],
+        slug: newItem.categorySlugs[index],
+      })
+    })
+    delete newItem.categoryNames
+    delete newItem.categorySlugs
+    return newItem
+  })
+  providers = providers.map((item) => {
     let newItem = { ...item }
     newItem.providerNames = newItem.providerNames.split(',')
     newItem.providerSlugs = newItem.providerSlugs.split(',')
@@ -38,6 +77,20 @@ app.use(async (_, res, next) => {
     delete newItem.providerNames
     delete newItem.providerSlugs
     return newItem
+  })
+  categories = categories.map((pt) => {
+    let newPt = { ...pt }
+    newPt.categories = newPt.categories.map((c) => {
+      let newItem
+      providers.forEach((p) => {
+        if (c.name === p.name) {
+          newItem = p
+          return
+        }
+      })
+      return newItem
+    })
+    return newPt
   })
   res.locals.runtimeCategories = categories
   next()
