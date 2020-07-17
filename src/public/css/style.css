@@ -525,11 +525,11 @@ span.fa.fa-shopping-cart.my-cart-icon {
   height: 43px;
   outline: none;
   border: none;
-  background: url(../images/can.png) no-repeat 6px 7px #fab005;
+  background: url(../images/can.png) no-repeat 8px 10px #fab005;
   display: inline-block;
 }
 .search-form input[type='submit']:hover {
-  background: url(../images/can.png) no-repeat 6px 7px #fab005;
+  background: url(../images/can.png) no-repeat 8px 10px #fab005;
   transition: 0.5s all;
   -webkit-transition: 0.5s all;
   -moz-transition: 0.5s all;
