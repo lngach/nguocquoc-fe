@@ -205,7 +205,7 @@ img.img-head {
 }
 .logo h1 b {
   font-size: 8px;
-  background: #ed0612;
+  background: #1973be;
   font-weight: normal;
   padding: 3px;
   display: inline-block;
@@ -377,7 +377,6 @@ nav.navbar.navbar-default {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  background-color: #fab005;
   color: #fff !important;
 }
 .nav > li > a {
@@ -514,21 +513,23 @@ span.fa.fa-shopping-cart.my-cart-icon {
   outline: none;
   font-size: 1.2em;
   color: black;
-  border: 1px solid #a6bfa9;
+  border: none;
 }
 .search-form input[type='text']::placeholder {
   color: black;
 }
 .search-form input[type='submit'] {
+  position: absolute;
+  right: 26px;
   width: 41px;
-  height: 42px;
+  height: 43px;
   outline: none;
-  border: 1px solid #fff;
-  background: url(../images/can.png) no-repeat 6px 7px #039445;
+  border: none;
+  background: url(../images/can.png) no-repeat 6px 7px #fab005;
   display: inline-block;
 }
 .search-form input[type='submit']:hover {
-  background: url(../images/can.png) no-repeat 6px 7px #039445;
+  background: url(../images/can.png) no-repeat 6px 7px #fab005;
   transition: 0.5s all;
   -webkit-transition: 0.5s all;
   -moz-transition: 0.5s all;
@@ -1123,7 +1124,7 @@ p.fo-para {
   text-decoration: none;
 }
 .fo-grid1 p a:hover {
-  color: #fab005;
+  color: white;
 }
 .fo-grid1 p i {
   margin-right: 7px;
@@ -1159,7 +1160,7 @@ p.fo-para {
 }
 /*-- //footer-top --*/
 .footer {
-  background: #e6f3f6;
+  background: #fe9400;
   padding: 5em 0;
 }
 .footer-grid h3 {
@@ -1178,7 +1179,7 @@ p.fo-para {
   line-height: 2.2em;
 }
 .footer-grid ul li a:hover {
-  color: #fab005;
+  color: white;
 }
 .copy-right p {
   font-size: 1.1em;
@@ -1186,7 +1187,7 @@ p.fo-para {
   margin-top: 4em;
 }
 .copy-right p a:hover {
-  color: #e21737;
+  color: white;
 }
 /*-- //footer --*/
 /*--product--*/
@@ -3006,9 +3007,9 @@ span.last {
     font-size: 1.4em;
   }
   .search-form input[type='submit'] {
-    width: 35px;
-    height: 35px;
-    background: url(../images/can.png) no-repeat 4px 3px #039445;
+    width: 30px;
+    height: 31px;
+    background: url(../images/can.png) no-repeat 2px 3px #fab005;
   }
   .search-form input[type='text'] {
     width: 85%;
@@ -3324,7 +3325,7 @@ span.last {
 .width-150 {
   min-width: unset !important;
   padding: 0 30px !important;
-  top: 0;
+  top: -2px;
   left: 110% !important;
   border: unset !important;
   border: unset !important;
@@ -3615,7 +3616,6 @@ span.last {
 .with-auto-menu {
   min-width: unset !important;
   padding: 10px 30px !important;
-  top: 110%;
   left: unset !important;
 }
 
@@ -3626,4 +3626,32 @@ span.last {
 
 .tiny-content > p {
   font-size: 1.5em;
+}
+
+.dropdown-menu {
+  background-color: #fe9400;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+  color: white;
+}
+
+.footer a:hover {
+  color: white;
+}
+
+.particles-js-canvas-el {
+  height: unset !important;
+  height: 210px !important;
+  position: absolute !important;
+  top: 0;
+  background-color: #fe9400 !important;
+  z-index: -99999;
+}
+
+#nav-tgle {
+  z-index: 999999;
+}
+.form-search {
+  position: relative;
 }

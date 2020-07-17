@@ -46,27 +46,28 @@
   <i class="Phone is-animating"> </i>
 </a>
 <!-- Phone Ring -->
-<a href="/"
+<!-- <a href="/"
   ><img
     src="/images/logo.png"
     class="img-head"
     alt="Ngọc Quốc Computer"
     title="Ngọc Quốc Computer"
-/></a>
+/></a> -->
 <header>
-  <div class="header" style="background-color: #ffffff;">
+  <div id="particles-js">
     <div>
-      <div class="logo">
-        <h1>
-          <a href="/"
-            ><b>D<br />K<br />S</b>&nbsp;Ngọc Quốc Computer<span
-              >Mang đến nguồn cảm hứng trên từng sản phẩm</span
-            ></a
-          >
-        </h1>
-      </div>
-      <div class="head-t">
-        <ul class="card unset-card">
+      <div class="header">
+        <div class="logo">
+          <h1>
+            <a href="/"
+              ><b>N<br />Q<br />C</b>&nbsp;Ngọc Quốc Computer<span
+                >Mang đến nguồn cảm hứng trên từng sản phẩm</span
+              ></a
+            >
+          </h1>
+        </div>
+        <div class="head-t">
+          <!-- <ul class="card unset-card">
           <li>
             <a href="/gio-hang"
               ><i class="fa fa-heart" aria-hidden="true"></i>Giỏ Hàng</a
@@ -82,101 +83,106 @@
               ><i class="fa fa-ship" aria-hidden="true"></i>Liên Hệ</a
             >
           </li>
-        </ul>
-        <div class="search-form">
-          <form action="/tim-kiem/" method="get">
-            <input type="text" placeholder="Tìm kiếm..." name="tu-khoa" />
-            <input type="submit" value=" " />
-          </form>
+        </ul> -->
+          <div class="search-form">
+            <form action="/tim-kiem/" method="get" class="form-search">
+              <input type="text" placeholder="Tìm kiếm..." name="tu-khoa" />
+              <input type="submit" value=" " />
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="nav-top">
-        <nav class="navbar navbar-default">
-          <div class="navbar-header nav_2">
-            <button
-              type="button"
-              class="navbar-toggle collapsed navbar-toggle1"
-              data-toggle="collapse"
-              data-target="#bs-megadropdown-tabs"
-            >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div
-            class="collapse navbar-collapse"
-            style="background-color: #ffffff;"
-            id="bs-megadropdown-tabs"
-          >
-            <ul class="nav navbar-nav">
-              <li>
-                <a href="/" class="hyper"><span>Trang chủ</span></a>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle hyper" data-toggle="dropdown"
-                  ><span>Danh Mục<b class="caret"></b></span
-                ></a>
-                <% if (runtimeCategories && runtimeCategories.length > 0) {%>
-                <ul class="dropdown-menu multi with-auto-menu">
-                  <% runtimeCategories.forEach(item => { %>
-                  <li class="dropdown submenu">
-                    <a href="/<%= item.slug %>" class="hyper"
-                      ><span><%= item.name %><b class="caret"></b></span
-                    ></a>
-                    <ul class="dropdown-menu multi width-150">
-                      <% if (item.categories && item.categories.length > 0) {%>
-                      <% item.categories.forEach(c => { %> <% if (c.id !== 12) {
-                      %>
-                      <li class="dropdown submenu2">
-                        <a href="/<%= item.slug %>/<%= c.slug %>" class="hyper"
-                          ><span><%= c.name %><b class="caret"></b></span
-                        ></a>
-                        <ul class="dropdown-menu multi width-150">
-                          <% if (c.providers && c.providers.length > 0) {%> <%
-                          c.providers.forEach(p => { %>
-                          <li class="dropdown submenu3">
-                            <a
-                              href="/<%= item.slug %>/<%= c.slug %>/<%= p.slug %>"
-                              class="hyper"
-                              ><span><%= p.name %></span></a
-                            >
-                          </li>
-                          <% })} %>
-                        </ul>
-                      </li>
-                      <% }})} %>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </li>
-                  <% })} %>
-                </ul>
-              </li>
-              <li>
-                <a href="/dich-vu" class="hyper"><span>Dịch Vụ</span></a>
-              </li>
-              <li>
-                <a href="/tin-tuc" class="hyper"><span>Tin Tức</span></a>
-              </li>
-              <li>
-                <a href="/gioi-thieu" class="hyper"><span>Giới Thiệu</span></a>
-              </li>
-              <li>
-                <a href="/lien-he" class="hyper"><span>Liên Hệ</span></a>
-              </li>
-              <li>
-                <a href="/gio-hang" class="hyper"><span>Giỏ Hàng</span></a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <!-- <div class="cart">
+        <div class="nav-top">
+          <nav class="navbar navbar-default">
+            <div class="navbar-header nav_2">
+              <button
+                id="nav-tgle"
+                type="button"
+                class="navbar-toggle collapsed navbar-toggle1"
+                data-toggle="collapse"
+                data-target="#bs-megadropdown-tabs"
+              >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+              <ul class="nav navbar-nav">
+                <li>
+                  <a href="/" class="hyper"><span>Trang chủ</span></a>
+                </li>
+                <li class="dropdown">
+                  <a
+                    href="#"
+                    class="dropdown-toggle hyper"
+                    data-toggle="dropdown"
+                    ><span>Danh Mục<b class="caret"></b></span
+                  ></a>
+                  <% if (runtimeCategories && runtimeCategories.length > 0) {%>
+                  <ul class="dropdown-menu multi with-auto-menu">
+                    <% runtimeCategories.forEach(item => { %>
+                    <li class="dropdown submenu">
+                      <a href="/<%= item.slug %>" class="hyper"
+                        ><span><%= item.name %><b class="caret"></b></span
+                      ></a>
+                      <ul class="dropdown-menu multi width-150">
+                        <% if (item.categories && item.categories.length > 0)
+                        {%> <% item.categories.forEach(c => { %> <% if (c.id !==
+                        12) { %>
+                        <li class="dropdown submenu2">
+                          <a
+                            href="/<%= item.slug %>/<%= c.slug %>"
+                            class="hyper"
+                            ><span><%= c.name %><b class="caret"></b></span
+                          ></a>
+                          <ul class="dropdown-menu multi width-150">
+                            <% if (c.providers && c.providers.length > 0) {%> <%
+                            c.providers.forEach(p => { %>
+                            <li class="dropdown submenu3">
+                              <a
+                                href="/<%= item.slug %>/<%= c.slug %>/<%= p.slug %>"
+                                class="hyper"
+                                ><span><%= p.name %></span></a
+                              >
+                            </li>
+                            <% })} %>
+                          </ul>
+                        </li>
+                        <% }})} %>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </li>
+                    <% })} %>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/dich-vu" class="hyper"><span>Dịch Vụ</span></a>
+                </li>
+                <li>
+                  <a href="/tin-tuc" class="hyper"><span>Tin Tức</span></a>
+                </li>
+                <li>
+                  <a href="/gioi-thieu" class="hyper"
+                    ><span>Giới Thiệu</span></a
+                  >
+                </li>
+                <li>
+                  <a href="/lien-he" class="hyper"><span>Liên Hệ</span></a>
+                </li>
+                <li>
+                  <a href="/gio-hang" class="hyper"><span>Giỏ Hàng</span></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- <div class="cart">
           <span class="fa fa-shopping-cart my-cart-icon"
             ><span class="badge badge-notify my-cart-badge"></span
           ></span>
         </div> -->
-        <div class="clearfix"></div>
+          <div class="clearfix"></div>
+        </div>
       </div>
     </div>
   </div>
