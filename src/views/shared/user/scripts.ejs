@@ -78,13 +78,17 @@
     })
     $(this).toggleClass('open')
   })
-  $('.submenu-item').hover(
-    function () {
-      $(this).addClass('active')
-    },
-    function () {
-      $(this).removeClass('active')
-    }
-  )
+  $('.submenu2').hover(function () {
+    $('.submenu2.open').each(function () {
+      $(this).removeClass('open')
+    })
+    $(this).toggleClass('open')
+  })
+  $('.submenu2').hover(function () {
+    $('.submenu2.open').each(function () {
+      $(this).removeClass('open')
+    })
+    $(this).toggleClass('open')
+  })
 </script>
 <% include ./showScript.ejs %>

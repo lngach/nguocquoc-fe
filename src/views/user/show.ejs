@@ -8,8 +8,13 @@
     <!-- HEADER -->
     <% include ../shared/user/header.ejs %>
     <!-- /HEADER -->
-    <% include ../shared/user/breadcrumb.ejs %>
-    <!-- /BREADCRUMB -->
+    <div id="vide">
+      <div class="container">
+        <div class="banner-info">
+          <div class="dump-height"></div>
+        </div>
+      </div>
+    </div>
 
     <!-- SECTION -->
 
@@ -35,20 +40,34 @@
               <h1 style="color: #18bc9b; font-family: 'EB Garamond', serif;">
                 <%=product.name %>
               </h1>
-              <% if (product.provider.id !== 26) { %>
-              <p>
-                <strong>Thương Hiệu: </strong>
-                <a
-                  href="/danh-muc/<%= product.categories.slug %>/<%= product.provider.slug %>"
-                  ><%= product.provider.name %></a
-                >
-              </p>
-              <% } %> <% if (product.categories.id !== 12 ) { %>
+              <% if (product.categories.id !== 12 ) { %>
               <div class="pr-single">
                 <p class="reduced">
                   Giá: Liên Hệ
                 </p>
               </div>
+              <% if (product.provider.id !== 26) { %>
+              <p>
+                <strong>Thương Hiệu: </strong>
+                <a
+                  href="/<%= product.product_type.slug %>/<%= product.categories.slug %>/<%= product.provider.slug %>"
+                  ><%= product.provider.name %></a
+                >
+              </p>
+              <% } %>
+              <p>
+                <strong>Danh mục:</strong>
+                <a
+                  href="/<%= product.product_type.slug %>/<%= product.categories.slug %>"
+                  ><%= product.categories.name %></a
+                >
+              </p>
+              <p>
+                <strong>Loại:</strong>
+                <a href="/<%= product.product_type.slug %>"
+                  ><%= product.product_type.name %></a
+                >
+              </p>
               <% } else { %>
               <div class="pr-single">
                 <p class="reduced">
@@ -61,9 +80,9 @@
                 </p>
               </div>
               <% } %> <% if (product.content.split(" ").length <= 500) { %>
-              <p style="margin-top: 3em;">
+              <div style="margin-top: 3em;" class="tiny-content">
                 <%- product.content %>
-              </p>
+              </div>
               <% } %>
               <ul class="social-top">
                 <li>
@@ -100,9 +119,9 @@
     </div>
     <% if (product.content.split(" ").length > 500) { %>
     <div class="container">
-      <p style="margin-top: 3em;">
+      <div style="margin-top: 3em;" class="tiny-content">
         <%- product.content %>
-      </p>
+      </div>
     </div>
     <% } %>
     <!---->

@@ -81,7 +81,7 @@ router.get('/', async (_, res) => {
         ProductType,
       ],
     })
-    // 8 san pham duoc quan tam nhieu nhat
+    // 6 Tin mới nhất
     let news = await Product.findAll({
       limit: 6,
       order: [['updated_at', 'DESC']],
@@ -141,6 +141,9 @@ router.get('/:slug', async (req, res) => {
       break
     case 'sitemap.xml':
       sitemap(req, res)
+    case 'tin-tuc':
+      news(req, res)
+      break
     default:
       if (await checkProduct(req)) return show(req, res)
       byProductType(req, res)
@@ -170,6 +173,47 @@ const contact = (_, res) => {
 
 const card = (_, res) => {
   res.render('404', { title: 'Giỏ hàng trống' })
+}
+
+const news = async (req, res) => {
+  // 6 Tin mới nhất
+  try {
+    const category = await Category.findOne({
+      where: {
+        slug: req.params.slug,
+        isActive: true,
+      },
+    })
+    let products = await Product.findAll({
+      limit: 6,
+      order: [['updated_at', 'DESC']],
+      where: { isActive: true },
+      include: [
+        {
+          model: Provider,
+          as: 'provider',
+          where: { id: 26, isActive: true },
+        },
+        {
+          model: Category,
+          as: 'categories',
+          where: { id: 12, isActive: true },
+        },
+        ProductType,
+      ],
+    })
+    res.render('user/category', {
+      title: category.name,
+      main: category,
+      products,
+    })
+  } catch (error) {
+    res.render('user/category', {
+      title: req.params.slug,
+      main: null,
+      products: [],
+    })
+  }
 }
 
 const service = (_, res) => {

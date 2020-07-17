@@ -122,28 +122,23 @@
                 <ul class="dropdown-menu multi with-auto-menu">
                   <% runtimeCategories.forEach(item => { %>
                   <li class="dropdown submenu">
-                    <a
-                      href="#"
-                      class="dropdown-toggle hyper"
-                      data-toggle="dropdown"
+                    <a href="/<%= item.slug %>" class="hyper"
                       ><span><%= item.name %><b class="caret"></b></span
                     ></a>
                     <ul class="dropdown-menu multi width-150">
                       <% if (item.categories && item.categories.length > 0) {%>
                       <% item.categories.forEach(c => { %> <% if (c.id !== 12) {
                       %>
-                      <li class="dropdown submenu">
-                        <a
-                          href="/danh-muc/<%= item.slug %>/<%= c.slug %>"
-                          class="hyper"
+                      <li class="dropdown submenu2">
+                        <a href="/<%= item.slug %>/<%= c.slug %>" class="hyper"
                           ><span><%= c.name %><b class="caret"></b></span
                         ></a>
                         <ul class="dropdown-menu multi width-150">
                           <% if (c.providers && c.providers.length > 0) {%> <%
                           c.providers.forEach(p => { %>
-                          <li class="dropdown submenu">
+                          <li class="dropdown submenu3">
                             <a
-                              href="/danh-muc/<%= item.slug %>/<%= p.slug %>"
+                              href="/<%= item.slug %>/<%= c.slug %>/<%= p.slug %>"
                               class="hyper"
                               ><span><%= p.name %></span></a
                             >
