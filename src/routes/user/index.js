@@ -124,6 +124,9 @@ router.get('/', async (_, res) => {
 
 router.get('/:slug', async (req, res) => {
   switch (req.params.slug) {
+    case 'dich-vu':
+      service(req, res)
+      break
     case 'tim-kiem':
       search(req, res)
       break
@@ -167,6 +170,10 @@ const contact = (_, res) => {
 
 const card = (_, res) => {
   res.render('404', { title: 'Giỏ hàng trống' })
+}
+
+const service = (_, res) => {
+  res.render('user/services', { title: 'Dịch Vụ' })
 }
 
 const search = async (req, res) => {
