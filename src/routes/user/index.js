@@ -66,7 +66,6 @@ router.get('/', async (_, res) => {
         ProductType,
       ],
     })
-
     // 8 san pham duoc quan tam nhieu nhat
     let topViewProducts = await Product.findAll({
       limit: 8,
@@ -82,6 +81,25 @@ router.get('/', async (_, res) => {
         ProductType,
       ],
     })
+    // 8 san pham duoc quan tam nhieu nhat
+    let news = await Product.findAll({
+      limit: 6,
+      order: [['updated_at', 'DESC']],
+      where: { isActive: true },
+      include: [
+        {
+          model: Provider,
+          as: 'provider',
+          where: { id: 26, isActive: true },
+        },
+        {
+          model: Category,
+          as: 'categories',
+          where: { id: 12, isActive: true },
+        },
+        ProductType,
+      ],
+    })
     res.render('user/index', {
       title: 'Ngọc Quốc Computer',
       newProducts,
@@ -89,7 +107,7 @@ router.get('/', async (_, res) => {
       topViewProducts,
       categoryCollections,
       newProducts,
-      news: [],
+      news,
     })
   } catch (error) {
     res.render('user/index', {
@@ -176,7 +194,7 @@ const search = async (req, res) => {
           },
         ],
       },
-      include: [{ model: Category, as: 'categories' }, Provider],
+      include: [{ model: Category, as: 'categories' }, Provider, ProductType],
     })
     res.render('user/search', {
       products,
@@ -241,37 +259,12 @@ const show = async (req, res) => {
 
 const byProvider = async (req, res) => {
   try {
-    // Top danh muc duoc quan tam nhieu nhat
-    const categoryCollections = await Category.findAll({
-      attributes: [
-        'id',
-        'name',
-        'slug',
-        [
-          sequelize.literal(
-            '(SELECT SUM(products.views) FROM products WHERE products.category_id = categories.id)'
-          ),
-          'totalView',
-        ],
-        [
-          sequelize.literal(
-            '(SELECT image from products WHERE products.category_id = categories.id ORDER BY RAND() limit 1)'
-          ),
-          'image',
-        ],
-      ],
-      where: { isActive: true },
-      order: [[sequelize.literal('totalView'), 'DESC']],
-      limit: 3,
-    })
-
     const provider = await Provider.findOne({
       where: {
         slug: req.params.slug3,
         isActive: true,
       },
     })
-
     const products = await Product.findAll({
       // where: { '$categories.slug$': req.params.slug },
       include: [
@@ -313,44 +306,18 @@ const byProvider = async (req, res) => {
       title: provider.name,
       main: provider,
       products,
-      categoryCollections,
     })
   } catch (error) {
     res.render('user/category', {
       title: req.params.slug3,
       main: null,
       products: [],
-      categoryCollections: [],
     })
   }
 }
 
 const byCategory = async (req, res) => {
   try {
-    // Top danh muc duoc quan tam nhieu nhat
-    const categoryCollections = await Category.findAll({
-      attributes: [
-        'id',
-        'name',
-        'slug',
-        [
-          sequelize.literal(
-            '(SELECT SUM(products.views) FROM products WHERE products.category_id = categories.id)'
-          ),
-          'totalView',
-        ],
-        [
-          sequelize.literal(
-            '(SELECT image from products WHERE products.category_id = categories.id ORDER BY RAND() limit 1)'
-          ),
-          'image',
-        ],
-      ],
-      where: { isActive: true },
-      order: [[sequelize.literal('totalView'), 'DESC']],
-      limit: 3,
-    })
-
     const category = await Category.findOne({
       where: {
         slug: req.params.slug2,
@@ -390,7 +357,6 @@ const byCategory = async (req, res) => {
       title: category.name,
       main: category,
       products,
-      categoryCollections,
     })
   } catch (error) {
     console.log(error)
@@ -398,37 +364,12 @@ const byCategory = async (req, res) => {
       title: req.params.slug,
       main: null,
       products: [],
-      categoryCollections: [],
     })
   }
 }
 
 const byProductType = async (req, res) => {
   try {
-    // Top danh muc duoc quan tam nhieu nhat
-    const categoryCollections = await Category.findAll({
-      attributes: [
-        'id',
-        'name',
-        'slug',
-        [
-          sequelize.literal(
-            '(SELECT SUM(products.views) FROM products WHERE products.category_id = categories.id)'
-          ),
-          'totalView',
-        ],
-        [
-          sequelize.literal(
-            '(SELECT image from products WHERE products.category_id = categories.id ORDER BY RAND() limit 1)'
-          ),
-          'image',
-        ],
-      ],
-      where: { id: { $not: 12 }, isActive: true },
-      order: [[sequelize.literal('totalView'), 'DESC']],
-      limit: 3,
-    })
-
     const product_type = await ProductType.findOne({
       where: {
         slug: req.params.slug,
@@ -464,14 +405,12 @@ const byProductType = async (req, res) => {
       title: product_type.name,
       main: product_type,
       products,
-      categoryCollections,
     })
   } catch (error) {
     res.render('user/category', {
       title: req.params.slug,
       main: null,
       products: [],
-      categoryCollections: [],
     })
   }
 }

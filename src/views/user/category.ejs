@@ -22,10 +22,11 @@
             <b class="line"></b>
           </div>
         </div>
-        <% categoryCollections.forEach(item => { %>
+        <%if (categoryCollections && categoryCollections.length > 0) { %> <%
+        categoryCollections.forEach(item => { %>
         <div class="col-md-4 m-w3ls">
           <div class="col-md1 fixed-height-320 card-category">
-            <a href="/danh-muc/<%= item.slug %>">
+            <a href="/<%= item.dataValues.productTypeSlug %>/<%= item.slug %>">
               <img
                 src="<%= item.dataValues.image %>"
                 class="img-responsive img img-300"
@@ -34,13 +35,16 @@
               />
             </a>
             <h3 class="most-cageogry-title">
-              <a href="/danh-muc/<%= item.slug %>" class="linkkk">
+              <a
+                href="/<%= item.dataValues.productTypeSlug %>/<%= item.slug %>"
+                class="linkkk"
+              >
                 <%= item.name %></a
               >
             </h3>
           </div>
         </div>
-        <% }) %>
+        <% }) %> <% } %>
       </div>
     </div>
     <!--content-->
@@ -78,24 +82,32 @@
                     </a>
                   </h6>
                 </div>
-                <% if (item.categories.id !== 100){ %>
+                <% if (item.categories.id !== 12){ %>
                 <div class="pr-single">
                   <p class="reduced">
                     Giá: Liên Hệ
                   </p>
                 </div>
-                <% if (item.provider.id !== 100) { %>
+                <% if (item.provider.id !== 26) { %>
                 <p>
-                  Thương Hiệu:
+                  <strong>Thương hiệu: </strong>
                   <a
-                    href="/danh-muc/<%= item.categories.slug %>/<%= item.provider.slug %>"
+                    href="/<%= item.product_type.slug %>/<%= item.categories.slug %>/<%= item.provider.slug %>"
                     ><%= item.provider.name %></a
                   >
                 </p>
                 <% } %>
                 <p>
-                  <a href="/danh-muc/<%= item.categories.slug %>"
+                  <strong>Danh mục:</strong>
+                  <a
+                    href="/<%= item.product_type.slug %>/<%= item.categories.slug %>"
                     ><%= item.categories.name %></a
+                  >
+                </p>
+                <p>
+                  <strong>Loại:</strong>
+                  <a href="/<%= item.product_type.slug %>"
+                    ><%= item.product_type.name %></a
                   >
                 </p>
                 <% } else { %>

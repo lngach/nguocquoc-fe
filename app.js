@@ -1,11 +1,11 @@
-var createError = require('http-errors')
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
-
-var pagesRouter = require('./src/routes/user/index')
+const createError = require('http-errors')
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
+const pagesRouter = require('./src/routes/user/index')
 const sequelize = require('./src/utils/provider')
+const Category = require('./src/models/category')
 const { QueryTypes } = require('sequelize')
 var app = express()
 
@@ -20,6 +20,35 @@ app.use(cookieParser())
 app.use(express.static('src/public'))
 
 app.use(async (_, res, next) => {
+  const categoryCollections = await Category.findAll({
+    attributes: [
+      'id',
+      'name',
+      'slug',
+      [
+        sequelize.literal(
+          '(SELECT SUM(products.views) FROM products WHERE products.category_id = categories.id)'
+        ),
+        'totalView',
+      ],
+      [
+        sequelize.literal(
+          '(SELECT product_types.slug FROM product_types, products WHERE products.category_id = categories.id AND products.product_type_id = product_types.id limit 1)'
+        ),
+        'productTypeSlug',
+      ],
+      [
+        sequelize.literal(
+          '(SELECT image from products WHERE products.category_id = categories.id ORDER BY RAND() limit 1)'
+        ),
+        'image',
+      ],
+    ],
+    where: { id: { $not: 12 }, isActive: true },
+    order: [[sequelize.literal('totalView'), 'DESC']],
+    limit: 3,
+  })
+
   let categories = await sequelize.query(
     `SELECT
         GROUP_CONCAT(DISTINCT c.name SEPARATOR ',') as categoryNames,
@@ -92,6 +121,7 @@ app.use(async (_, res, next) => {
     })
     return newPt
   })
+  res.locals.categoryCollections = categoryCollections
   res.locals.runtimeCategories = categories
   next()
 })

@@ -6,18 +6,28 @@
     </h3>
     <h4 class="banner-top-bread-h4" style="font-family: 'EB Garamond', serif;">
       <a href="/">Trang Chủ</a>
-      <label>/</label
-      ><a
-        href="/danh-muc/<%= product.categories.slug %>"
+      <% if (product.categories.id !== 12) { %>
+      <label>/</label>
+      <a
+        href="/<%= product.product_type.slug %>"
+        style="font-family: 'EB Garamond', serif;"
+        ><%= product.product_type.name %></a
+      >
+      <% } %>
+      <label>/</label>
+      <a
+        href="/<%= product.product_type.slug %>/<%= product.categories.slug %>"
         style="font-family: 'EB Garamond', serif;"
         ><%= product.categories.name %></a
       >
-      <label>/</label
-      ><a
+      <% if (product.provider.id !== 26) { %>
+      <label>/</label>
+      <a
         style="font-family: 'EB Garamond', serif;"
-        href="/danh-muc/<%= product.categories.slug %>/<%= product.provider.slug %>"
-        ><%= product.provider.name %>%></a
+        href="/<%= product.product_type.slug %>/<%= product.categories.slug %>/<%= product.provider.slug %>"
+        ><%= product.provider.name %></a
       >
+      <% } %>
       <label>/</label><%= product.name %>%>
     </h4>
     <div class="clearfix"></div>
