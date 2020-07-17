@@ -109,6 +109,7 @@ button.close.close-w3 {
 }
 /*----*/
 img.img-head {
+  width: 20%;
   position: absolute;
   top: 0;
 }
@@ -437,7 +438,7 @@ ul.multi-column-dropdown h6 {
 .dropdown-menu {
   top: 98%;
   left: -85%;
-  background-color: #e6f3f7;
+  background-color: #ffffff;
 }
 .multi1 {
   left: -330%;
@@ -514,10 +515,9 @@ span.fa.fa-shopping-cart.my-cart-icon {
   font-size: 1.2em;
   color: black;
   border: 1px solid #a6bfa9;
-  background: rgba(237, 252, 255, 0.54);
 }
 .search-form input[type='text']::placeholder {
-  color: yellowgreen;
+  color: black;
 }
 .search-form input[type='submit'] {
   width: 41px;
@@ -3617,4 +3617,9 @@ span.last {
   padding: 10px 30px !important;
   top: 110%;
   left: unset !important;
+}
+
+#vide > div {
+  background-size: cover !important;
+  background-position: 50% 100% !important;
 }
