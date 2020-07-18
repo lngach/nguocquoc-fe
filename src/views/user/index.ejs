@@ -20,26 +20,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
 
     <!--content-->
-    <div class="product" style="background-color: #fbfeff;">
+    <div class="product">
       <div class="container">
         <div class="spec">
           <h3>Danh mục được quan tâm nhiều nhất</h3>
           <div class="ser-t">
             <b></b>
-            <span style="background-color: #fbfeff;"><i></i></span>
+            <span><i></i></span>
             <b class="line"></b>
           </div>
-		    </div>
-		<% categoryCollections.forEach(item => { %>
-			<div class="col-md-4 m-w3ls">
-				<div class="col-md1 fixed-height-320 card-category">
-				  <a href="/danh-muc/<%= item.slug %>">
-					  <img src="<%= item.dataValues.image %>" class="img-responsive img img-300" alt="<%= item.name %>" title="<%= item.name %>" />
-          </a>
-          <h3 class="most-cageogry-title"> <a href="/danh-muc/<%= item.slug %>" class="linkkk"> <%= item.name %></a></h3>
-				</div>
-			  </div>
-		<% }) %>
+        </div>
+        <%if (categoryCollections && categoryCollections.length > 0) { %> <%
+        categoryCollections.forEach(item => { %>
+        <div class="col-md-4 m-w3ls">
+          <div class="col-md1 fixed-height-320 card-category">
+            <a href="/<%= item.dataValues.productTypeSlug %>/<%= item.slug %>">
+              <img
+                src="<%= item.dataValues.image %>"
+                class="img-responsive img img-300"
+                alt="<%= item.name %>"
+                title="<%= item.name %>"
+              />
+            </a>
+            <h3 class="most-cageogry-title">
+              <a
+                href="/<%= item.dataValues.productTypeSlug %>/<%= item.slug %>"
+                class="linkkk"
+              >
+                <%= item.name %></a
+              >
+            </h3>
+          </div>
+        </div>
+        <% }) %> <% } %>
       </div>
     </div>
     
