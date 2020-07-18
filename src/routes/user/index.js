@@ -11,30 +11,6 @@ const path = require('path')
 
 router.get('/', async (_, res) => {
   try {
-    //Top danh muc duoc quan tam nhieu nhat
-    let categoryCollections = await Category.findAll({
-      attributes: [
-        'id',
-        'name',
-        'slug',
-        [
-          sequelize.literal(
-            '(SELECT SUM(products.views) FROM products WHERE products.category_id = categories.id)'
-          ),
-          'totalView',
-        ],
-        [
-          sequelize.literal(
-            '(SELECT image from products WHERE products.category_id = categories.id ORDER BY RAND() limit 1)'
-          ),
-          'image',
-        ],
-      ],
-      where: { id: { $not: 12 }, isActive: true },
-      order: [[sequelize.literal('totalView'), 'DESC']],
-      limit: 3,
-    })
-
     // 8 san pham moi nhat
     let newProducts = await Product.findAll({
       limit: 8,
