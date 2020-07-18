@@ -45,6 +45,11 @@
                 <p class="reduced">
                   Giá: Liên Hệ
                 </p>
+                <% if (product.warranty > 0) { %>
+                <p class="reduced">
+                  Bảo hành: <%= product.warranty %> Tháng
+                </p>
+                <% } %>
               </div>
               <% if (product.provider.id !== 26) { %>
               <p>
