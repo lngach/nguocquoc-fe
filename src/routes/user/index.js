@@ -81,7 +81,6 @@ router.get('/', async (_, res) => {
       newProducts,
       topSellProducts,
       topViewProducts,
-      categoryCollections,
       newProducts,
       news,
     })
@@ -90,7 +89,6 @@ router.get('/', async (_, res) => {
       title: 'Ngọc Quốc Computer',
       newProducts: [],
       topSellProducts: [],
-      categoryCollections: [],
       topViewProducts: [],
       newProducts: [],
       news: [],
