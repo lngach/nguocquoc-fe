@@ -2092,9 +2092,14 @@ p.in-pa {
 
 .reduced {
   color: #fc6914;
-  font-size: 1em;
+  font-size: 1.4em;
   margin-top: 1em;
 }
+
+.show-detail {
+  font-size: 1.4em !important;
+}
+
 .reduced del {
   margin-right: 2%;
   color: #62bf43;

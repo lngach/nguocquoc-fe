@@ -42,17 +42,12 @@
               </h1>
               <% if (product.categories.id !== 12 ) { %>
               <div class="pr-single">
-                <p class="reduced">
+                <p class="reduced show-detail">
                   Giá: Liên Hệ
                 </p>
-                <% if (product.warranty > 0) { %>
-                <p class="reduced">
-                  Bảo hành: <%= product.warranty %> Tháng
-                </p>
-                <% } %>
               </div>
               <% if (product.provider.id !== 26) { %>
-              <p>
+              <p class="show-detail">
                 <strong>Thương Hiệu: </strong>
                 <a
                   href="/<%= product.product_type.slug %>/<%= product.categories.slug %>/<%= product.provider.slug %>"
@@ -60,29 +55,29 @@
                 >
               </p>
               <% } %>
-              <p>
+              <p class="show-detail">
                 <strong>Danh mục:</strong>
                 <a
                   href="/<%= product.product_type.slug %>/<%= product.categories.slug %>"
                   ><%= product.categories.name %></a
                 >
               </p>
-              <p>
+              <p class="show-detail">
                 <strong>Loại:</strong>
                 <a href="/<%= product.product_type.slug %>"
                   ><%= product.product_type.name %></a
                 >
-              </p>
+              </p class="show-detail">
               <div class="pr-single">
                 <% if (product.warranty > 0) { %>
-                <p class="reduced">
+                <p class="reduced show-detail">
                   Bảo hành: <%= product.warranty %> Tháng
                 </p>
                 <% } %>
               </div>
               <% } else { %>
               <div class="pr-single">
-                <p class="reduced">
+                <p class="reduced show-detail">
                   Đăng lúc: <%= product.createdAt.toLocaleString() %>
                   <br />
                   Lần cập nhật cuối cùng: <%= product.updatedAt.toLocaleString()
@@ -91,7 +86,7 @@
                   Danh mục: <%= product.categories.name %>
                 </p>
               </div>
-              <% } %> <% if (product.content.split(" ").length <= 500) { %>
+              <% } %> <% if (product.content.split(" ").length <= 20) { %>
               <div style="margin-top: 3em;" class="tiny-content">
                 <%- product.content %>
               </div>
@@ -129,9 +124,9 @@
         </div>
       </div>
     </div>
-    <% if (product.content.split(" ").length > 500) { %>
+    <% if (product.content.split(" ").length > 20) { %>
     <div class="container">
-      <div style="margin-top: 3em;" class="tiny-content">
+      <div style="padding: 3em 1em;" class="tiny-content">
         <%- product.content %>
       </div>
     </div>
