@@ -73,6 +73,13 @@
                   ><%= product.product_type.name %></a
                 >
               </p>
+              <div class="pr-single">
+                <% if (product.warranty > 0) { %>
+                <p class="reduced">
+                  Bảo hành: <%= product.warranty %> Tháng
+                </p>
+                <% } %>
+              </div>
               <% } else { %>
               <div class="pr-single">
                 <p class="reduced">
