@@ -91,10 +91,8 @@
                  <%= item.createdAt.toLocaleString() %>
               </p>
               <p>
-                <strong>Loại:</strong>
-                <a href="/<%= item.product_type.slug %>"
-                  ><%= item.product_type.name %></a
-                >
+                <strong>Danh mục:</strong>
+                <%= item.product_type.name %>
               </p>
               <% } %>
             </div>
