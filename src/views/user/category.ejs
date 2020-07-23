@@ -117,13 +117,16 @@
                   >
                 </p>
                 <% } else { %>
-                <div class="pr-single">
-                  <p class="reduced">
-                    Đăng lúc: <%= item.createdAt.toLocaleString() %>
-                    <br />
-                    Danh mục: <%= item.categories.name %>
-                  </p>
-                </div>
+                <p class="">
+                  <strong>Đăng lúc:</strong>
+                  <%= item.createdAt.toLocaleString() %>
+                </p>
+                <p>
+                  <strong>Loại:</strong>
+                  <a href="/<%= item.product_type.slug %>"
+                    ><%= item.product_type.name %></a
+                  >
+                </p>
                 <% } %>
               </div>
             </div>

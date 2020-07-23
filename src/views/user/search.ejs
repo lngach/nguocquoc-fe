@@ -60,7 +60,7 @@
               <% if (item.categories.id !== 12){ %>
               <div class="pr-single">
                 <p class="reduced">
-                  Giá: Liên Hệ         
+                  Giá: Liên Hệ
                 </p>
               </div>
               <% if (item.provider.id !== 26) { %>
@@ -74,7 +74,8 @@
               <% } %>
               <p>
                 <strong>Danh mục:</strong>
-                <a href="/<%= item.product_type.slug %>/<%= item.categories.slug %>"
+                <a
+                  href="/<%= item.product_type.slug %>/<%= item.categories.slug %>"
                   ><%= item.categories.name %></a
                 >
               </p>
@@ -85,13 +86,16 @@
                 >
               </p>
               <% } else { %>
-              <div class="pr-single">
-                <p class="reduced">
-                  Đăng lúc: <%= item.createdAt.toLocaleString() %>
-                  <br />
-                  Danh mục: <%= item.categories.name %>
-                </p>
-              </div>
+              <p class="">
+                <strong>Đăng lúc:</strong>
+                 <%= item.createdAt.toLocaleString() %>
+              </p>
+              <p>
+                <strong>Loại:</strong>
+                <a href="/<%= item.product_type.slug %>"
+                  ><%= item.product_type.name %></a
+                >
+              </p>
               <% } %>
             </div>
           </div>
