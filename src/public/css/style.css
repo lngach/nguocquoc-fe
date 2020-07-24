@@ -3602,6 +3602,18 @@ span.last {
   }
 }
 
+@media screen and (min-width: 2560px) {
+  .dump-height {
+    min-height: 650px;
+  }
+}
+
+@media screen and (min-width: 3840px) {
+  .dump-height {
+    min-height: 1000px;
+  }
+}
+
 .zalo-chat-widget {
   width: 80px !important;
   height: 80px !important;
