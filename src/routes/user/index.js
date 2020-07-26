@@ -5,8 +5,7 @@ var Category = require('../../models/category')
 var ProductType = require('../../models/product_type')
 var ProductImage = require('../../models/product_image')
 var Provider = require('../../models/provider')
-// var paginate = require('../../config/config.paginate')
-const sequelize = require('sequelize')
+var paginate = require('../../config/config.paginate')
 const path = require('path')
 
 router.get('/', async (_, res) => {
@@ -150,7 +149,7 @@ const card = (_, res) => {
 }
 
 const news = async (req, res) => {
-  // 6 Tin mới nhất
+  // 8 Tin mới nhất
   try {
     const category = await Category.findOne({
       where: {
@@ -158,8 +157,8 @@ const news = async (req, res) => {
         isActive: true,
       },
     })
-    let products = await Product.findAll({
-      limit: 6,
+    let products = await Product.findAndCountAll({
+      ...paginate(req),
       order: [['updated_at', 'DESC']],
       where: { isActive: true },
       include: [
@@ -176,16 +175,19 @@ const news = async (req, res) => {
         ProductType,
       ],
     })
+    meta = { ...paginate(req), total: products.count, path: req.originalUrl }
     res.render('user/category', {
       title: category.name,
       main: category,
-      products,
+      products: products.rows,
+      meta,
     })
   } catch (error) {
     res.render('user/category', {
       title: req.params.slug,
       main: null,
       products: [],
+      meta: null,
     })
   }
 }
@@ -195,10 +197,11 @@ const service = (_, res) => {
 }
 
 const search = async (req, res) => {
+  const key = req.query['tu-khoa']
+  const title = key
   try {
-    const key = req.query['tu-khoa']
-    const title = key
-    const products = await Product.findAll({
+    const products = await Product.findAndCountAll({
+      ...paginate(req),
       where: {
         isActive: true,
         $or: [
@@ -221,13 +224,17 @@ const search = async (req, res) => {
       },
       include: [{ model: Category, as: 'categories' }, Provider, ProductType],
     })
+    meta = { ...paginate(req), total: products.count, path: req.originalUrl }
     res.render('user/search', {
-      products,
+      products: products.rows,
       title,
+      meta,
     })
   } catch (error) {
     res.render('user/search', {
       products: [],
+      title,
+      meta: null,
     })
   }
 }
@@ -290,10 +297,9 @@ const byProvider = async (req, res) => {
         isActive: true,
       },
     })
-    const products = await Product.findAll({
-      // where: { '$categories.slug$': req.params.slug },
+    const products = await Product.findAndCountAll({
+      ...paginate(req),
       include: [
-        Provider,
         {
           model: Category,
           as: 'categories',
@@ -325,18 +331,20 @@ const byProvider = async (req, res) => {
         ['sales', 'DESC'],
       ],
       where: { isActive: true },
-      limit: 8,
     })
+    meta = { ...paginate(req), total: products.count, path: req.originalUrl }
     res.render('user/category', {
       title: provider.name,
       main: provider,
-      products,
+      products: products.rows,
+      meta,
     })
   } catch (error) {
     res.render('user/category', {
       title: req.params.slug3,
       main: null,
       products: [],
+      meta: null,
     })
   }
 }
@@ -350,7 +358,8 @@ const byCategory = async (req, res) => {
       },
     })
 
-    const products = await Product.findAll({
+    const products = await Product.findAndCountAll({
+      ...paginate(req),
       include: [
         Provider,
         {
@@ -376,19 +385,20 @@ const byCategory = async (req, res) => {
         ['views', 'DESC'],
         ['sales', 'DESC'],
       ],
-      limit: 8,
     })
+    meta = { ...paginate(req), total: products.count, path: req.originalUrl }
     res.render('user/category', {
       title: category.name,
       main: category,
-      products,
+      products: products.rows,
+      meta,
     })
   } catch (error) {
-    console.log(error)
     res.render('user/category', {
       title: req.params.slug,
       main: null,
       products: [],
+      meta: null,
     })
   }
 }
@@ -402,7 +412,8 @@ const byProductType = async (req, res) => {
       },
     })
 
-    const products = await Product.findAll({
+    const products = await Product.findAndCountAll({
+      ...paginate(req),
       include: [
         Provider,
         {
@@ -424,18 +435,20 @@ const byProductType = async (req, res) => {
         ['views', 'DESC'],
         ['sales', 'DESC'],
       ],
-      limit: 8,
     })
+    meta = { ...paginate(req), total: products.count, path: req.originalUrl }
     res.render('user/category', {
       title: product_type.name,
       main: product_type,
-      products,
+      products: products.rows,
+      meta,
     })
   } catch (error) {
     res.render('user/category', {
       title: req.params.slug,
       main: null,
       products: [],
+      meta: null,
     })
   }
 }

@@ -73,6 +73,7 @@ app.use(async (_, res, next) => {
       WHERE
         p.category_id = c.id
         AND p.provider_id = pd.id
+        AND p.is_active = 1
       GROUP BY c.name, c.slug
       ORDER BY c.id ASC`,
     { type: QueryTypes.SELECT }

@@ -1,27 +1,44 @@
-<% if (parseInt(totalItem/meta.per) > 1) { %>
-    <ul class="store-pagination">
-        <% if (meta.page > 1) { %>
-            <li><a href="http://localhost:4000/store">&laquo;</a></li>
-        <% } %>
-        <% var i = 1;
-        if (meta.page > 5) {
-            i = +meta.page - 4;
-        } %>
-        <% if (i !== 1) { %>
-            <li class="disabled"><a href="#">...</a></li>
-        <% } %>
-        <% for (i; i<=parseInt(totalItem/meta.per); i++) { %>
-            <% if (meta.page == i) { %>
-                <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
-            <% } else { %>
-                <li><a href="http://localhost:4000/store?page=<%= i %>"><%= i %></a></li>
-            <% } %>
-            <% if (i == (+meta.page + 4)) { %>
-                <li class="disabled"><a href="#">...</a></li>
-            <% break; } %>
-        <% } %>
-        <% if (meta.page != parseInt(totalItem/meta.per)) { %>
-            <li><a href="http://localhost:4000/store?page=<%= parseInt(totalItem/meta.per) %>">&raquo;</a></li>
-        <% } %>
+<% if (meta && parseInt(meta.total/meta.limit) > 1) { %>
+<nav style="width: 100%; text-align: center;">
+  <ul class="pagination">
+    <ul class="pagination">
+      <% const prePath = meta.path.includes('page') ?
+      meta.path.replace(/\page.*$/, 'page=' + (meta.page - 1 === 0 ? 1 :
+      meta.page - 1)) : meta.path.includes('tu-khoa')? meta.path+'&page=' +
+      (meta.page - 1 === 0 ? 1 : meta.page - 1): meta.path+'?page=' + (meta.page
+      - 1 === 0 ? 1 : meta.page - 1) %>
+      <li class="<%= meta.page === 1 ? 'disabled' : ''%>">
+        <a href="<%= prePath %>" aria-label="Previous"
+          ><span aria-hidden="true">«</span></a
+        >
+      </li>
+      <% for(let i = 1; i <= parseInt(meta.total/meta.limit) + 1; i++) {%> <%
+      const currentPath = meta.path.includes('page') ?
+      meta.path.replace(/\page.*$/, 'page=' + i) : meta.path.includes('tu-khoa')
+      ? meta.path+'&page=' + i : meta.path+'?page=' + i %>
+      <li class="<%= meta.page === i ? 'active' : '' %>">
+        <a href="<%= currentPath %>">
+          <%= i %>
+          <span class="sr-only"
+            ><%= meta.page === i ? '(current)' : '' %></span
+          ></a
+        >
+      </li>
+      <% } %> <% const nextPath = meta.path.includes('page') ?
+      meta.path.replace(/\page.*$/, 'page=' + (meta.page ===
+      (parseInt(meta.total/meta.limit) + 1) ? meta.page : meta.page + 1)) :
+      meta.path.includes('tu-khoa') ? meta.path+'&page=' + (meta.page ===
+      (parseInt(meta.total/meta.limit) + 1) ? meta.page : meta.page + 1) :
+      meta.path+'?page=' + (meta.page === (parseInt(meta.total/meta.limit) + 1)
+      ? meta.page : meta.page + 1) %>
+      <li
+        class="<%= meta.page === parseInt(meta.total/meta.limit) + 1 ? 'disabled' : ''%>"
+      >
+        <a href="<%= nextPath %>" aria-label="Next"
+          ><span aria-hidden="true">»</span></a
+        >
+      </li>
     </ul>
+  </ul>
+</nav>
 <% } %>
