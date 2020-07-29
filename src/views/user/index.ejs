@@ -18,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
       </div>
     </div>
-
+  <div class="main">
     <!--content-->
     <div class="product">
       <div class="container">
@@ -36,8 +36,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <div class="col-md1 fixed-height-320 card-category">
             <a href="/<%= item.dataValues.productTypeSlug %>/<%= item.slug %>">
               <img
-                src="<%= item.dataValues.image %>"
-                class="img-responsive img img-300"
+                data-src="<%= item.dataValues.image %>"
+                class="img-responsive img img-300 lazy-image"
                 alt="<%= item.name %>"
                 title="<%= item.name %>"
               />
@@ -73,8 +73,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="col-m fixed-height">
               <a href="/<%= item.slug %>" class="offer-img">
                 <img
-                  src="<%= item.image %> "
-                  class="img-responsive img-110"
+                  data-src="<%= item.image %> "
+                  class="img-responsive img-110 lazy-image"
                   alt="<%= item.name %>"
                   title="<% item.name %>"
                 />
@@ -132,7 +132,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <div class="clearfix"></div>
         </div>
       </div>
-	</div>
+	  </div>
 	
     <div class="product" style="background-color: #fbfeff;">
       <div class="container">
@@ -150,8 +150,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="col-m fixed-height">
               <a href="/<%= item.slug %>" class="offer-img">
                 <img
-                  src="<%= item.image %> "
-                  class="img-responsive img-110"
+                  data-src="<%= item.image %> "
+                  class="img-responsive img-110 lazy-image"
                   alt="<%= item.name %>"
                   title="<% item.name %>"
                 />
@@ -209,7 +209,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			  <div class="clearfix"></div>
 		</div>
       </div>
-	</div>
+	  </div>
 	
     <div class="product" style="background-color: #fcfcff;">
       <div class="container">
@@ -227,8 +227,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="col-m fixed-height">
               <a href="/<%= item.slug %>" class="offer-img">
                 <img
-                  src="<%= item.image %> "
-                  class="img-responsive img-110"
+                  data-src="<%= item.image %> "
+                  class="img-responsive img-110 lazy-image"
                   alt="<%= item.name %>"
                   title="<% item.name %>"
                 />
@@ -303,7 +303,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="col-md-4 m-w3ls">
               <div class="col-md1 fixed-height-320">
                 <a href="/<%= item.slug %>">
-                  <img src="<%= item.image %>" class="img-responsive img img-300" alt="<%= item.name %>" title="<%= item.name %>"/>
+                  <img data-src="<%= item.image %>" class="img-responsive img img-300 lazy-image" alt="<%= item.name %>" title="<%= item.name %>"/>
                   <div class="big-sa">
                     <h6><%= item.name %></h6>
                     <p>
@@ -317,7 +317,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
       </div>
     </div>
-
+  </div>
     <!--footer-->
     <% include ../shared/user/footer.ejs %>
     <!-- //footer-->

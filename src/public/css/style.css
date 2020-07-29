@@ -3305,16 +3305,19 @@ span.last {
 
 .img-110 {
   height: 110px;
+  background-color: #333;
 }
 
 .img-300 {
   width: 350px;
   height: 270px;
+  background-color: #333;
 }
 
 .img-400 {
   width: 350px;
   height: 370px;
+  background-color: #333;
 }
 
 .fixed-height-320 {
@@ -3676,4 +3679,15 @@ span.last {
 }
 .form-search {
   position: relative;
+}
+
+.lazy-image {
+  opacity: 0.1;
+  will-change: opacity;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.lazy-image.loaded {
+  opacity: 1;
 }
