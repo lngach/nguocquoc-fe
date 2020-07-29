@@ -2954,7 +2954,7 @@ span.last {
     padding: 0.5em;
   }
   .mid-1 h6 {
-    font-size: 0.85em;
+    font-size: 1em;
   }
   .mid-2 p {
     float: none;
@@ -3377,6 +3377,9 @@ span.last {
   }
   .most-cageogry-title {
     font-size: 1.3em;
+  }
+  .reduced {
+    font-size: 1em;
   }
 }
 @media (min-width: 992px) {
