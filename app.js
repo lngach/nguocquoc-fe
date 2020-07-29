@@ -132,8 +132,8 @@ app.use(async (req, res, next) => {
 app.use(pagesRouter)
 
 // catch 404 and forward to error handler
-app.use(function (_, _, next) {
-  next(createError(404))
+app.use(function (_, res) {
+  res.status(404).render('404', { title: 'Trang không tìm thấy' })
 })
 
 // error handler
@@ -143,11 +143,8 @@ app.use(function (err, req, res) {
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page
-  if (err.status === 404) res.render('404')
-  else {
-    res.status(err.status || 500)
-    res.render('error')
-  }
+  res.status(err.status || 500)
+  res.render('error')
 })
 
 module.exports = app
