@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static('src/public'))
 
-app.use(async (_, res, next) => {
+app.use(async (req, res, next) => {
   const categoryCollections = await Category.findAll({
     attributes: [
       'id',
@@ -122,6 +122,8 @@ app.use(async (_, res, next) => {
     })
     return newPt
   })
+  const fullUrl = req.protocol + 's://' + req.get('host') + req.originalUrl
+  res.locals.canonical = fullUrl.replace(/\?.*$/, '')
   res.locals.categoryCollections = categoryCollections
   res.locals.runtimeCategories = categories
   next()
