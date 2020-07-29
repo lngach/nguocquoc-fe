@@ -454,7 +454,7 @@ const index = async (res) => {
       ],
     })
     res.render('user/index', {
-      title: 'Ngọc Quốc Computer - Ngọc Quốc IT',
+      title: 'Ngọc Quốc Computer - Sửa chữa lắp đặt thiết bị vi tính',
       newProducts,
       topSellProducts,
       topViewProducts,
@@ -463,7 +463,7 @@ const index = async (res) => {
     })
   } catch (error) {
     res.render('user/index', {
-      title: 'Ngọc Quốc Computer - Ngọc Quốc IT',
+      title: 'Ngọc Quốc Computer - Sửa chữa lắp đặt thiết bị vi tính',
       newProducts: [],
       topSellProducts: [],
       topViewProducts: [],
