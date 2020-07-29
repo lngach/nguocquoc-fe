@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   background: #fff;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Roboto', sans-serif;
 }
 body a {
   transition: 0.5s all;
@@ -24,7 +24,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 p,
 label {
@@ -422,6 +422,7 @@ ul.multi-column-dropdown h6 {
   font-size: 1em;
   color: black;
   text-transform: uppercase;
+  font-family: 'EB Garamond', serif;
 }
 .navbar-default .navbar-nav > li > a:hover {
   color: #fff;
@@ -646,7 +647,7 @@ ul.nav.tabs {
   font-size: 1.2em;
 }
 .mid-1 h6 a {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Roboto', sans-serif;
   color: #000000;
   text-decoration: none;
 }
@@ -3358,7 +3359,6 @@ span.last {
 .most-cageogry-title {
   margin-top: 10px;
   font-size: 1.5em;
-  font-family: 'EB Garamond', serif;
 }
 
 .linkkk:hover {
@@ -3629,6 +3629,7 @@ span.last {
   text-transform: uppercase;
   height: 50px;
   line-height: 45px;
+  font-family: 'EB Garamond', serif;
 }
 
 .with-auto-menu {
