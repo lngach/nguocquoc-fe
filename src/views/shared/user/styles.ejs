@@ -73,6 +73,20 @@
   href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
 />
 
+<% if (this.meta && meta !== null) { %> <% const prePath =
+meta.path.includes('page') ? meta.path.replace(/\page.*$/, 'page=' + (meta.page
+- 1 === 0 ? 1 : meta.page - 1)) : meta.path.includes('tu-khoa')?
+meta.path+'&page=' + (meta.page - 1 === 0 ? 1 : meta.page - 1):
+meta.path+'?page=' + (meta.page - 1 === 0 ? 1 : meta.page - 1) %>
+<link rel="prev" href="<%= prePath %>" />
+<% const nextPath = meta.path.includes('page') ? meta.path.replace(/\page.*$/,
+'page=' + (meta.page === (parseInt(meta.total/meta.limit) + 1) ? meta.page :
+meta.page + 1)) : meta.path.includes('tu-khoa') ? meta.path+'&page=' +
+(meta.page === (parseInt(meta.total/meta.limit) + 1) ? meta.page : meta.page +
+1) : meta.path+'?page=' + (meta.page === (parseInt(meta.total/meta.limit) + 1) ?
+meta.page : meta.page + 1) %>
+<link rel="next" href="<%= nextPath %>" />
+<% } %>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script
   async
