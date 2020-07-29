@@ -37,6 +37,10 @@ router.get('/:slug', async (req, res) => {
       break
     case 'sitemap.xml':
       sitemap(req, res)
+      break
+    case 'robots.txt':
+      robots(req, req)
+      break
     case 'tin-tuc':
       news(req, res)
       break
@@ -54,6 +58,10 @@ router.get('/:slug/:slug2', async (req, res) => {
 router.get('/:slug/:slug2/:slug3', async (req, res) => {
   return byProvider(req, res)
 })
+
+const robots = (_, res) => {
+  res.sendFile(path.resolve('Robots.txt'))
+}
 
 const sitemap = (_, res) => {
   res.sendFile(path.resolve('sitemap.xml'))
