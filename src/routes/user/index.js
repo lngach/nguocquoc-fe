@@ -9,94 +9,14 @@ var paginate = require('../../config/config.paginate')
 const path = require('path')
 
 router.get('/', async (_, res) => {
-  try {
-    // 8 san pham moi nhat
-    let newProducts = await Product.findAll({
-      limit: 8,
-      order: [['updated_at', 'DESC']],
-      include: [
-        Provider,
-        {
-          model: Category,
-          as: 'categories',
-          where: { id: { $not: 12 }, isActive: true },
-        },
-        ProductType,
-      ],
-      where: { isActive: true },
-    })
-
-    // 8 san pham dc ban chay nhat
-    let topSellProducts = await Product.findAll({
-      limit: 8,
-      order: [['sales', 'DESC']],
-      where: { isActive: true },
-      include: [
-        Provider,
-        {
-          model: Category,
-          as: 'categories',
-          where: { id: { $not: 12 }, isActive: true },
-        },
-        ProductType,
-      ],
-    })
-    // 8 san pham duoc quan tam nhieu nhat
-    let topViewProducts = await Product.findAll({
-      limit: 8,
-      order: [['views', 'DESC']],
-      where: { isActive: true },
-      include: [
-        Provider,
-        {
-          model: Category,
-          as: 'categories',
-          where: { id: { $not: 12 }, isActive: true },
-        },
-        ProductType,
-      ],
-    })
-    // 6 Tin mới nhất
-    let news = await Product.findAll({
-      limit: 6,
-      order: [['updated_at', 'DESC']],
-      where: { isActive: true },
-      include: [
-        {
-          model: Provider,
-          as: 'provider',
-          where: { id: 26, isActive: true },
-        },
-        {
-          model: Category,
-          as: 'categories',
-          where: { id: 12, isActive: true },
-        },
-        ProductType,
-      ],
-    })
-    res.render('user/index', {
-      title: 'Ngọc Quốc Computer',
-      newProducts,
-      topSellProducts,
-      topViewProducts,
-      newProducts,
-      news,
-    })
-  } catch (error) {
-    res.render('user/index', {
-      title: 'Ngọc Quốc Computer',
-      newProducts: [],
-      topSellProducts: [],
-      topViewProducts: [],
-      newProducts: [],
-      news: [],
-    })
-  }
+  return index(res)
 })
 
 router.get('/:slug', async (req, res) => {
   switch (req.params.slug) {
+    case 'trang-chu' || 'index.html' || 'index.php':
+      index(res)
+      break
     case 'dich-vu':
       service(req, res)
       break
@@ -460,6 +380,93 @@ const checkProduct = async (req) => {
     return true
   } catch (error) {
     return false
+  }
+}
+
+const index = async (res) => {
+  try {
+    // 8 san pham moi nhat
+    let newProducts = await Product.findAll({
+      limit: 8,
+      order: [['updated_at', 'DESC']],
+      include: [
+        Provider,
+        {
+          model: Category,
+          as: 'categories',
+          where: { id: { $not: 12 }, isActive: true },
+        },
+        ProductType,
+      ],
+      where: { isActive: true },
+    })
+
+    // 8 san pham dc ban chay nhat
+    let topSellProducts = await Product.findAll({
+      limit: 8,
+      order: [['sales', 'DESC']],
+      where: { isActive: true },
+      include: [
+        Provider,
+        {
+          model: Category,
+          as: 'categories',
+          where: { id: { $not: 12 }, isActive: true },
+        },
+        ProductType,
+      ],
+    })
+    // 8 san pham duoc quan tam nhieu nhat
+    let topViewProducts = await Product.findAll({
+      limit: 8,
+      order: [['views', 'DESC']],
+      where: { isActive: true },
+      include: [
+        Provider,
+        {
+          model: Category,
+          as: 'categories',
+          where: { id: { $not: 12 }, isActive: true },
+        },
+        ProductType,
+      ],
+    })
+    // 6 Tin mới nhất
+    let news = await Product.findAll({
+      limit: 6,
+      order: [['updated_at', 'DESC']],
+      where: { isActive: true },
+      include: [
+        {
+          model: Provider,
+          as: 'provider',
+          where: { id: 26, isActive: true },
+        },
+        {
+          model: Category,
+          as: 'categories',
+          where: { id: 12, isActive: true },
+        },
+        ProductType,
+      ],
+    })
+    res.render('user/index', {
+      title: 'Ngọc Quốc Computer',
+      newProducts,
+      topSellProducts,
+      topViewProducts,
+      newProducts,
+      news,
+    })
+  } catch (error) {
+    res.render('user/index', {
+      title: 'Ngọc Quốc Computer',
+      newProducts: [],
+      topSellProducts: [],
+      topViewProducts: [],
+      newProducts: [],
+      news: [],
+    })
   }
 }
 
