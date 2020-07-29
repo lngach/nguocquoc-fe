@@ -14,7 +14,10 @@ router.get('/', async (_, res) => {
 
 router.get('/:slug', async (req, res) => {
   switch (req.params.slug) {
-    case ['trang-chu', 'index.html', 'index.php', 'home']:
+    case 'trang-chu':
+    case 'index.html':
+    case 'index.php':
+    case 'home':
       index(res)
       break
     case 'dich-vu':
