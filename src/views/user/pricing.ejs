@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../shared/user/styles.ejs %>
+    <link rel="stylesheet" href="/css/custom-table.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <% include ../shared/user/header.ejs %>
+    <!-- /HEADER -->
+
+    <!-- MAIN -->
+    <div class="product">
+      <div class="container">
+        <div class="spec">
+          <h3>
+            Bảng Giá Ngày
+            <span style="color: #18bc9b; font-family: 'EB Garamond', serif;"
+              ><%= new Date().toLocaleString().split(', ')[0] %></span
+            >
+          </h3>
+          <div class="ser-t">
+            <b></b>
+            <span style="background-color: #fbfeff;"><i></i></span>
+            <b class="line"></b>
+          </div>
+        </div>
+        <div class="container">
+          <div class="header_wrap">
+            <div class="tb_search">
+              <input
+                type="text"
+                id="search_input_all"
+                onkeyup="FilterkeyWord_all_table()"
+                placeholder="Lọc kết quả.."
+                class="form-control"
+              />
+            </div>
+          </div>
+          <table class="table table-striped table-class" id="table-id">
+            <thead>
+              <tr>
+                <th>Mã SP</th>
+                <th>Chi tiết & mô tả</th>
+                <th>Giá</th>
+                <th>Bảo hành</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% categories.forEach(pt => { %>
+              <tr>
+                <td colspan="4" class="spec-title">
+                  <h2 class="blue triangle-down"><%= pt.name %></h2>
+                </td>
+              </tr>
+              <% pt.categories.forEach(c => { %> <% if (c.id === 12 ) return %>
+              <tr>
+                <td colspan="4" class="spec-title">
+                  <h3 class="red triangle-down"><%= c.name %></h3>
+                </td>
+              </tr>
+              <% c.providers.forEach(pd => { %>
+              <tr>
+                <td colspan="4" class="spec-title">
+                  <h4 class="green triangle-down"><%= pd.name %></h4>
+                </td>
+              </tr>
+              <% pd.products.forEach(p => { %>
+              <tr class="filter">
+                <td><%= p.id %></td>
+                <td><%= p.name %></td>
+                <td><%= p.price === 0 ? 'Liên hệ' : p.price + 'đ' %></td>
+                <td><%= p.warranty %> Tháng</td>
+              </tr>
+              <!-- hi -->
+              <% }) %>
+              <!-- hi -->
+              <% }) %>
+              <!-- hi -->
+              <% }) %>
+              <!-- hi -->
+              <% }) %>
+            </tbody>
+          </table>
+
+          <!--		Start Pagination -->
+          <div class="pagination-container">
+            <nav>
+              <ul class="pagination">
+                <!--	Here the JS Function Will Add the Rows -->
+              </ul>
+            </nav>
+          </div>
+          <div class="rows_count">Showing 11 to 20 of 91 entries</div>
+        </div>
+        <!-- 		End of Container -->
+
+        <!--  Developed By Yasser Mas -->
+      </div>
+    </div>
+    <!-- /MAIN -->
+
+    <!-- FOOTER -->
+    <% include ../shared/user/footer.ejs %>
+    <!-- /FOOTER -->
+    <!-- jQuery Plugins -->
+    <% include ../shared/user/scripts.ejs %>
+    <script src="/js/paginate.js"></script>
+  </body>
+</html>

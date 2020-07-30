@@ -1561,7 +1561,7 @@ h2.resp-accordion:first-child {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  font-size: 0.8em;
+  font-size: 1em;
   color: #222222;
 }
 .table > thead > tr > th,
@@ -3691,3 +3691,7 @@ span.last {
 .lazy-image.loaded {
   opacity: 1;
 }
+
+/* CUSTOM TABLE  */
+
+/* /CUSTOM TABLE  */

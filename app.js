@@ -64,6 +64,7 @@ app.use(async (req, res, next) => {
   )
   let providers = await sequelize.query(
     `SELECT
+        GROUP_CONCAT(DISTINCT pd.id   SEPARATOR ',') as providerIds,
         GROUP_CONCAT(DISTINCT pd.name SEPARATOR ',') as providerNames,
         GROUP_CONCAT(DISTINCT pd.slug SEPARATOR ',') as providerSlugs,
         c.id, c.name, c.slug
@@ -94,15 +95,18 @@ app.use(async (req, res, next) => {
   })
   providers = providers.map((item) => {
     let newItem = { ...item }
+    newItem.providerIds = newItem.providerIds.split(',')
     newItem.providerNames = newItem.providerNames.split(',')
     newItem.providerSlugs = newItem.providerSlugs.split(',')
     newItem.providers = []
     newItem.providerNames.forEach((_, index) => {
       newItem.providers.push({
+        id: newItem.providerIds[index],
         name: newItem.providerNames[index],
         slug: newItem.providerSlugs[index],
       })
     })
+    delete newItem.providerIds
     delete newItem.providerNames
     delete newItem.providerSlugs
     return newItem
