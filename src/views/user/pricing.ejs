@@ -50,18 +50,20 @@
             <tbody>
               <% categories.forEach(pt => { %>
               <tr>
-                <td colspan="4" class="spec-title">
-                  <h2 class="blue circle"><%= pt.name %></h2>
+                <td colspan="4" class="spec-title" style="padding: unset !important;">
+                  <div class="productType-name">
+                  <h3><%= pt.name %></h3>
+                </div>
                 </td>
               </tr>
               <% Object.keys(pt.categories).forEach(c => { %>
-              <tr>
-                <td colspan="4" class="spec-title">
-                  <h3 class="red circle">
-                    <%= c %>
-                  </h3>
-                </td>
-              </tr>
+                <tr>
+                  <td colspan="4" class="spec-title" style="padding: unset !important;">
+                    <div class="category-name">
+                    <h3><%= c %></h3>
+                  </div>
+                  </td>
+                </tr>
               <% Object.values(pt.categories[c]).forEach(p => { %> <% if
               (p.category_id === 12 ) return %>
               <tr class="filter">
