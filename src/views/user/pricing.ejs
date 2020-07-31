@@ -11,7 +11,7 @@
     <!-- /HEADER -->
 
     <!-- MAIN -->
-    <div style="margin-top: 2em">
+    <div style="margin-top: 3.5em">
       <div class="container">
         <div class="spec">
           <h3>
@@ -51,13 +51,13 @@
               <% categories.forEach(pt => { %>
               <tr>
                 <td colspan="4" class="spec-title">
-                  <h2 class="blue triangle-down"><%= pt.name %></h2>
+                  <h2 class="blue circle"><%= pt.name %></h2>
                 </td>
               </tr>
               <% Object.keys(pt.categories).forEach(c => { %>
               <tr>
                 <td colspan="4" class="spec-title">
-                  <h3 class="red triangle-down">
+                  <h3 class="red circle">
                     <%= c %>
                   </h3>
                 </td>
