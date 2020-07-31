@@ -60,7 +60,10 @@
               <% if (item.categories.id !== 12){ %>
               <div class="pr-single">
                 <p class="reduced">
-                  Giá: Liên Hệ
+                  Giá: <%= item.price === 0 ? 'Liên hệ' : new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                  }).format(item.price) %>
                 </p>
               </div>
               <% if (item.provider.id !== 26) { %>

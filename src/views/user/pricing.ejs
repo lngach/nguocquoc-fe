@@ -72,7 +72,10 @@
                   <img width="70" src="<%= p.image %>" alt="<%= p.name %>" title="<%= p.name %>">
                 </a></td>
                 <td><a href="/<%= p.slug %>"> <%= p.name %></a></td>
-                <td><%= p.price === 0 ? 'Liên hệ' : p.price + 'đ' %></td>
+                <td><%= p.price === 0 ? 'Liên hệ' : new Intl.NumberFormat('vi-VN', {
+                  style: 'currency',
+                  currency: 'VND',
+                }).format(p.price) %></td>
                 <td><%= p.warranty %> Tháng</td>
               </tr>
               <!-- hi -->
