@@ -3691,7 +3691,8 @@ span.last {
 .lazy-image.loaded {
   opacity: 1;
 }
-
-/* CUSTOM TABLE  */
-
-/* /CUSTOM TABLE  */
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: white !important;
+}
