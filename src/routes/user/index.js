@@ -1,10 +1,9 @@
 var express = require('express')
 var router = express.Router()
-const sequelize = require('../../utils/provider')
-const { QueryTypes } = require('sequelize')
 var Product = require('../../models/product')
 var Category = require('../../models/category')
 var ProductType = require('../../models/product_type')
+var ProductTypeWithProduct = require('../../models/product_type_with_product')
 var ProductImage = require('../../models/product_image')
 var Provider = require('../../models/provider')
 var paginate = require('../../config/config.paginate')
@@ -488,151 +487,10 @@ const index = async (res) => {
 
 const pricing = async (res) => {
   try {
-    let categories = await sequelize.query(
-      `SELECT
-          GROUP_CONCAT(DISTINCT c.name SEPARATOR ',') as categoryNames,
-          GROUP_CONCAT(DISTINCT c.slug SEPARATOR ',') as categorySlugs,
-          pt.id, pt.name, pt.slug
-        FROM
-          products p, categories c, product_types pt
-        WHERE
-          p.category_id = c.id
-          AND p.product_type_id = pt.id
-        GROUP BY pt.name, pt.slug
-        ORDER BY pt.id ASC`,
-      { type: QueryTypes.SELECT }
-    )
-    let providers = await sequelize.query(
-      `SELECT
-          GROUP_CONCAT(DISTINCT pd.id   SEPARATOR ',') as providerIds,
-          GROUP_CONCAT(DISTINCT pd.name SEPARATOR ',') as providerNames,
-          GROUP_CONCAT(DISTINCT pd.slug SEPARATOR ',') as providerSlugs,
-          c.id, c.name, c.slug
-        FROM
-          products p, categories c, providers pd
-        WHERE
-          p.category_id = c.id
-          AND p.provider_id = pd.id
-          AND p.is_active = 1
-        GROUP BY c.name, c.slug
-        ORDER BY c.id ASC`,
-      { type: QueryTypes.SELECT }
-    )
-    let products = await sequelize.query(
-      `SELECT
-          GROUP_CONCAT(DISTINCT p.id   SEPARATOR ',') as productIds,
-          GROUP_CONCAT(DISTINCT p.name SEPARATOR ',') as productNames,
-          GROUP_CONCAT(DISTINCT p.slug SEPARATOR ',') as productSlugs,
-          GROUP_CONCAT(DISTINCT p.price SEPARATOR ',') as productPrices,
-          GROUP_CONCAT(DISTINCT p.warranty SEPARATOR ',') as productWarranties,
-
-          pd.id, pd.name, pd.slug
-        FROM
-          products p, categories c, providers pd, product_types pt
-        WHERE
-          p.product_type_id = pt.id
-          AND p.category_id = c.id
-          AND p.provider_id = pd.id
-          AND p.is_active = 1
-        GROUP BY pd.name, pd.slug
-        ORDER BY pd.id ASC`,
-      { type: QueryTypes.SELECT }
-    )
-
-    categories = categories.map((item) => {
-      let newItem = { ...item }
-      newItem.categoryNames = newItem.categoryNames.split(',')
-      newItem.categorySlugs = newItem.categorySlugs.split(',')
-      newItem.categories = []
-      newItem.categoryNames.forEach((_, index) => {
-        newItem.categories.push({
-          name: newItem.categoryNames[index],
-          slug: newItem.categorySlugs[index],
-        })
-      })
-      delete newItem.categoryNames
-      delete newItem.categorySlugs
-      return newItem
+    let categories = await ProductTypeWithProduct.findAll({
+      include: [Product],
+      order: [[Product, 'name', 'ASC']],
     })
-
-    providers = providers.map((item) => {
-      let newItem = { ...item }
-      newItem.providerIds = newItem.providerIds.split(',')
-      newItem.providerNames = newItem.providerNames.split(',')
-      newItem.providerSlugs = newItem.providerSlugs.split(',')
-      newItem.providers = []
-      newItem.providerNames.forEach((_, index) => {
-        newItem.providers.push({
-          id: newItem.providerIds[index],
-          name: newItem.providerNames[index],
-          slug: newItem.providerSlugs[index],
-        })
-      })
-      delete newItem.providerIds
-      delete newItem.providerNames
-      delete newItem.providerSlugs
-      return newItem
-    })
-
-    products = products.map((item) => {
-      let newItem = { ...item }
-      newItem.productIds = newItem.productIds.split(',')
-      newItem.productNames = newItem.productNames.split(',')
-      newItem.productSlugs = newItem.productSlugs.split(',')
-      newItem.productPrices = newItem.productPrices.split(',')
-      newItem.productWarranties = newItem.productWarranties.split(',')
-      newItem.products = []
-      newItem.productNames.forEach((_, index) => {
-        newItem.products.push({
-          id: newItem.productIds[index],
-          name: newItem.productNames[index],
-          slug: newItem.productSlugs[index],
-          price: newItem.productPrices[index],
-          warranty: newItem.productWarranties[index],
-        })
-      })
-      delete newItem.productIds
-      delete newItem.productNames
-      delete newItem.productSlugs
-      delete newItem.productPrices
-      delete newItem.productWarranties
-      return newItem
-    })
-
-    categories = categories.map((pt) => {
-      let newPt = { ...pt }
-      newPt.categories = newPt.categories.map((c) => {
-        let newItem
-        providers.forEach((pd) => {
-          if (c.name === pd.name) {
-            newItem = pd
-            return
-          }
-        })
-        return newItem
-      })
-      return newPt
-    })
-
-    categories = categories.map((pt) => {
-      let newPt = { ...pt }
-      newPt.categories = newPt.categories.map((c) => {
-        let newC = { ...c }
-        newC.providers = newC.providers.map((pd) => {
-          let newP
-          products.forEach((p) => {
-            if (pd.name === p.name) {
-              newP = p
-              return
-            }
-          })
-          return newP
-        })
-        return newC
-      })
-      return newPt
-    })
-
     res.render('user/pricing', { categories, title: 'Bảng Giá' })
   } catch (error) {
     res.render('user/pricing', { categories: [], title: 'Bảng Giá' })

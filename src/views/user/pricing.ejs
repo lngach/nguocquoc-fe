@@ -48,35 +48,20 @@
               </tr>
             </thead>
             <tbody>
-              <% categories.forEach(pt => { %>
+              <% categories.forEach(c => { %>
               <tr>
                 <td colspan="4" class="spec-title">
-                  <h2 class="blue triangle-down"><%= pt.name %></h2>
+                  <h2 class="blue triangle-down"><%= c.name %></h2>
                 </td>
               </tr>
-              <% pt.categories.forEach(c => { %> <% if (c.id === 12 ) return %>
-              <tr>
-                <td colspan="4" class="spec-title">
-                  <h3 class="red triangle-down"><%= c.name %></h3>
-                </td>
-              </tr>
-              <% c.providers.forEach(pd => { %>
-              <tr>
-                <td colspan="4" class="spec-title">
-                  <h4 class="green triangle-down"><%= pd.name %></h4>
-                </td>
-              </tr>
-              <% pd.products.forEach(p => { %>
+              <% c.products.forEach(p => { %> <% if (p.category_id === 12 )
+              return %>
               <tr class="filter">
-                <td><%= p.id %></td>
-                <td><%= p.name %></td>
+                <td><a href="/<%= p.slug %>"> <%= p.id %></a></td>
+                <td><a href="/<%= p.slug %>"> <%= p.name %></a></td>
                 <td><%= p.price === 0 ? 'Liên hệ' : p.price + 'đ' %></td>
                 <td><%= p.warranty %> Tháng</td>
               </tr>
-              <!-- hi -->
-              <% }) %>
-              <!-- hi -->
-              <% }) %>
               <!-- hi -->
               <% }) %>
               <!-- hi -->
