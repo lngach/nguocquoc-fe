@@ -45,7 +45,7 @@ app.use(async (req, res, next) => {
     ],
     where: { id: { $not: 12 }, isActive: true },
     order: [[sequelize.literal('totalView'), 'DESC']],
-    limit: 3,
+    limit: 6,
   })
 
   let categories = await sequelize.query(
