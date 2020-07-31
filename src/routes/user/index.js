@@ -1,13 +1,14 @@
-var express = require('express')
-var router = express.Router()
-var Product = require('../../models/product')
-var Category = require('../../models/category')
-var ProductType = require('../../models/product_type')
-var ProductTypeWithProduct = require('../../models/product_type_with_product')
-var ProductImage = require('../../models/product_image')
-var Provider = require('../../models/provider')
-var paginate = require('../../config/config.paginate')
+const express = require('express')
+const router = express.Router()
+const Product = require('../../models/product')
+const Category = require('../../models/category')
+const ProductType = require('../../models/product_type')
+const ProductTypeWithProduct = require('../../models/product_type_with_product')
+const ProductImage = require('../../models/product_image')
+const Provider = require('../../models/provider')
+const paginate = require('../../config/config.paginate')
 const path = require('path')
+const _ = require('lodash')
 
 router.get('/', async (_, res) => {
   return index(res)
@@ -487,9 +488,29 @@ const index = async (res) => {
 
 const pricing = async (res) => {
   try {
-    let categories = await ProductTypeWithProduct.findAll({
-      include: [Product],
+    let productTypes = await ProductTypeWithProduct.findAll({
+      include: [
+        {
+          model: Product,
+          as: 'products',
+          attributes: ['name', 'slug', 'id', 'price', 'warranty', 'image'],
+          include: [
+            {
+              model: Category,
+              as: 'categories',
+              attributes: ['name'],
+            },
+          ],
+        },
+      ],
+      attributes: ['name'],
       order: [[Product, 'name', 'ASC']],
+    })
+    let categories = productTypes.map((pt) => {
+      let newPt = {}
+      newPt.categories = _.groupBy(pt.products, (p) => p.categories.name)
+      newPt.name = pt.name
+      return newPt
     })
     res.render('user/pricing', { categories, title: 'Bảng Giá' })
   } catch (error) {

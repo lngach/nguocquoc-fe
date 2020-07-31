@@ -11,7 +11,7 @@
     <!-- /HEADER -->
 
     <!-- MAIN -->
-    <div class="product">
+    <div style="margin-top: 2em">
       <div class="container">
         <div class="spec">
           <h3>
@@ -41,23 +41,33 @@
           <table class="table table-striped table-class" id="table-id">
             <thead>
               <tr>
-                <th>Mã SP</th>
+                <th>Hình ảnh</th>
                 <th>Chi tiết & mô tả</th>
                 <th>Giá</th>
                 <th>Bảo hành</th>
               </tr>
             </thead>
             <tbody>
-              <% categories.forEach(c => { %>
+              <% categories.forEach(pt => { %>
               <tr>
                 <td colspan="4" class="spec-title">
-                  <h2 class="blue triangle-down"><%= c.name %></h2>
+                  <h2 class="blue triangle-down"><%= pt.name %></h2>
                 </td>
               </tr>
-              <% c.products.forEach(p => { %> <% if (p.category_id === 12 )
-              return %>
+              <% Object.keys(pt.categories).forEach(c => { %>
+              <tr>
+                <td colspan="4" class="spec-title">
+                  <h3 class="red triangle-down">
+                    <%= c %>
+                  </h3>
+                </td>
+              </tr>
+              <% Object.values(pt.categories[c]).forEach(p => { %> <% if
+              (p.category_id === 12 ) return %>
               <tr class="filter">
-                <td><a href="/<%= p.slug %>"> <%= p.id %></a></td>
+                <td><a href="/<%= p.slug %>">
+                  <img width="70" src="<%= p.image %>" alt="<%= p.name %>" title="<%= p.name %>">
+                </a></td>
                 <td><a href="/<%= p.slug %>"> <%= p.name %></a></td>
                 <td><%= p.price === 0 ? 'Liên hệ' : p.price + 'đ' %></td>
                 <td><%= p.warranty %> Tháng</td>
@@ -66,22 +76,10 @@
               <% }) %>
               <!-- hi -->
               <% }) %>
+              <!-- hi -->
+              <% }) %>
             </tbody>
           </table>
-
-          <!--		Start Pagination -->
-          <div class="pagination-container">
-            <nav>
-              <ul class="pagination">
-                <!--	Here the JS Function Will Add the Rows -->
-              </ul>
-            </nav>
-          </div>
-          <div class="rows_count">Showing 11 to 20 of 91 entries</div>
-        </div>
-        <!-- 		End of Container -->
-
-        <!--  Developed By Yasser Mas -->
       </div>
     </div>
     <!-- /MAIN -->
