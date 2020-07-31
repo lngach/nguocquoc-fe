@@ -57,6 +57,7 @@
                 </td>
               </tr>
               <% Object.keys(pt.categories).forEach(c => { %>
+                <% if (c === 'Tin Tức') return %>
                 <tr>
                   <td colspan="4" class="spec-title" style="padding: unset !important;">
                     <div class="category-name">
