@@ -43,10 +43,10 @@
               <% if (product.categories.id !== 12 ) { %>
               <div class="pr-single">
                 <p class="reduced show-detail">
-                  Giá: <%= item.price === 0 ? 'Liên hệ' : new Intl.NumberFormat('vi-VN', {
+                  Giá: <%= product.price === 0 ? 'Liên hệ' : new Intl.NumberFormat('vi-VN', {
                     style: 'currency',
                     currency: 'VND',
-                  }).format(item.price) %>
+                  }).format(product.price) %>
                 </p>
               </div>
               <% if (product.provider.id !== 26) { %>
