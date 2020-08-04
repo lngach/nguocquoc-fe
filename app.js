@@ -24,6 +24,7 @@ app.use(async (req, res, next) => {
       'id',
       'name',
       'slug',
+      'image',
       [
         sequelize.literal(
           '(SELECT SUM(products.views) FROM products WHERE products.category_id = categories.id)'
@@ -35,12 +36,6 @@ app.use(async (req, res, next) => {
           '(SELECT product_types.slug FROM product_types, products WHERE products.category_id = categories.id AND products.product_type_id = product_types.id limit 1)'
         ),
         'productTypeSlug',
-      ],
-      [
-        sequelize.literal(
-          '(SELECT image from products WHERE products.category_id = categories.id ORDER BY RAND() limit 1)'
-        ),
-        'image',
       ],
     ],
     where: { id: { $not: 12 }, isActive: true },
