@@ -41,7 +41,7 @@ router.get('/:slug', async (req, res) => {
       sitemap(req, res)
       break
     case 'robots.txt':
-      robots(req, req)
+      robots(req, res)
       break
     case 'tin-tuc':
       news(req, res)
