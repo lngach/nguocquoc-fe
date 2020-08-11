@@ -65,7 +65,7 @@ router.get('/:slug/:slug2/:slug3', async (req, res) => {
 })
 
 const robots = (_, res) => {
-  res.sendFile(path.resolve('Robots.txt'))
+  res.sendFile(path.resolve('robots.txt'))
 }
 
 const sitemap = (_, res) => {
