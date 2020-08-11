@@ -1,3 +1,3 @@
-const HOST = 'https://test.snmtechnology.com'
+const HOST = 'https://ngocquoccomputer.com'
 
 module.exports = HOST
