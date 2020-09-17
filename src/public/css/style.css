@@ -182,7 +182,7 @@ img.img-head {
 /*-- header --*/
 .header {
   text-align: center;
-  padding-top: 2em;
+  /* padding-top: 2em; */
 }
 .logo h1 {
   font-family: 'EB Garamond', serif;
