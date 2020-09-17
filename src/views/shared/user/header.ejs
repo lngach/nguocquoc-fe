@@ -112,50 +112,42 @@
                 <li>
                   <a href="/" class="hyper"><span>Trang chủ</span></a>
                 </li>
+
+                <% if (runtimeCategories && runtimeCategories.length > 0) {%> <%
+                runtimeCategories.forEach(item => { %>
                 <li class="dropdown">
                   <a
-                    href="#"
+                    href="/<%= item.slug %>"
                     class="dropdown-toggle hyper"
                     data-toggle="dropdown"
-                    ><span>Danh Mục<b class="caret"></b></span
+                    ><span><%= item.name %><b class="caret"></b></span
                   ></a>
-                  <% if (runtimeCategories && runtimeCategories.length > 0) {%>
+
                   <ul class="dropdown-menu multi with-auto-menu">
-                    <% runtimeCategories.forEach(item => { %>
-                    <li class="dropdown submenu">
-                      <a href="/<%= item.slug %>" class="hyper"
-                        ><span><%= item.name %><b class="caret"></b></span
+                    <% if (item.categories && item.categories.length > 0) {%> <%
+                    item.categories.forEach(c => { %> <% if (c.id !== 12) { %>
+                    <li class="dropdown submenu2">
+                      <a href="/<%= item.slug %>/<%= c.slug %>" class="hyper"
+                        ><span><%= c.name %><b class="caret"></b></span
                       ></a>
                       <ul class="dropdown-menu multi width-150">
-                        <% if (item.categories && item.categories.length > 0)
-                        {%> <% item.categories.forEach(c => { %> <% if (c.id !==
-                        12) { %>
-                        <li class="dropdown submenu2">
+                        <% if (c.providers && c.providers.length > 0) {%> <%
+                        c.providers.forEach(p => { %>
+                        <li class="dropdown submenu3">
                           <a
-                            href="/<%= item.slug %>/<%= c.slug %>"
+                            href="/<%= item.slug %>/<%= c.slug %>/<%= p.slug %>"
                             class="hyper"
-                            ><span><%= c.name %><b class="caret"></b></span
-                          ></a>
-                          <ul class="dropdown-menu multi width-150">
-                            <% if (c.providers && c.providers.length > 0) {%> <%
-                            c.providers.forEach(p => { %>
-                            <li class="dropdown submenu3">
-                              <a
-                                href="/<%= item.slug %>/<%= c.slug %>/<%= p.slug %>"
-                                class="hyper"
-                                ><span><%= p.name %></span></a
-                              >
-                            </li>
-                            <% })} %>
-                          </ul>
+                            ><span><%= p.name %></span></a
+                          >
                         </li>
-                        <% }})} %>
+                        <% })} %>
                       </ul>
-                      <div class="clearfix"></div>
                     </li>
-                    <% })} %>
+                    <% }})} %>
                   </ul>
+                  <div class="clearfix"></div>
                 </li>
+                <% })} %>
                 <li>
                   <a href="/dich-vu" class="hyper"><span>Dịch Vụ</span></a>
                 </li>
