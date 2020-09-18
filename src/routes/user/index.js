@@ -20,7 +20,7 @@ router.get('/:slug', async (req, res) => {
     case 'index.html':
     case 'index.php':
     case 'home':
-      index(res)
+      res.redirect('/')
       break
     case 'dich-vu':
       service(req, res)
